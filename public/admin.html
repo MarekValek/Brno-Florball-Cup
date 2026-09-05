@@ -3,40 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BFC Admin - Zápis utkání</title>
+  <title>BFC Admin - Ovládání zápasu</title>
   <style>
-    body { font-family: sans-serif; background: #111; color: #fff; text-align: center; padding: 20px; }
-    .scoreboard { display: flex; justify-content: space-around; align-items: center; margin: 30px 0; }
-    .team { background: #222; padding: 20px; border-radius: 10px; width: 40%; }
-    .score { font-size: 48px; font-weight: bold; color: #ff3333; margin: 10px 0; }
-    button { background: #ff3333; color: white; border: none; padding: 15px 25px; font-size: 18px; border-radius: 5px; cursor: pointer; }
-    button:active { transform: scale(0.95); }
+    body { font-family: sans-serif; background: #121212; color: #fff; text-align: center; margin: 0; padding: 20px; }
+    .timer-box { background: #1e1e1e; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+    .timer { font-size: 56px; font-weight: bold; color: #00ff66; font-family: monospace; }
+    .scoreboard { display: flex; justify-content: space-around; gap: 10px; margin-bottom: 20px; }
+    .team { background: #1e1e1e; padding: 20px; border-radius: 10px; width: 45%; }
+    .score { font-size: 64px; font-weight: bold; color: #ff3333; margin: 10px 0; }
+    .btn { background: #333; color: white; border: none; padding: 12px 18px; font-size: 16px; border-radius: 6px; cursor: pointer; margin: 5px; }
+    .btn-red { background: #ff3333; }
+    .btn-green { background: #00b341; }
+    .btn-yellow { background: #e6b800; color: #000; }
+    .btn:active { transform: scale(0.96); }
+    .penalties { margin-top: 15px; text-align: left; font-size: 14px; background: #2a2a2a; padding: 10px; border-radius: 6px; }
   </style>
 </head>
 <body>
 
-  <h1>Brno Floorball Cup - Online Zápis</h1>
-  <h2>Zápas #1</h2>
+  <h1>Brno Floorball Cup - Zápis live</h1>
 
+  <!-- ČASOMÍRA -->
+  <div class="timer-box">
+    <div id="timer" class="timer">15:00</div>
+    <button class="btn btn-green" onclick="startTimer()">Start</button>
+    <button class="btn btn-yellow" onclick="pauseTimer()">Pauza</button>
+    <button class="btn" onclick="resetTimer()">Reset (15:00)</button>
+  </div>
+
+  <!-- SKÓRE A TRESTY -->
   <div class="scoreboard">
+    <!-- Domácí -->
     <div class="team">
-      <h3>FBK Bulldogs Brno</h3>
+      <h2>FBK Bulldogs Brno</h2>
       <div id="home-score" class="score">0</div>
-      <button onclick="addGoal('home')">+ GÓL DOMÁCÍ</button>
+      <button class="btn btn-red" onclick="addGoal('home')">+ GÓL</button>
+      <button class="btn btn-yellow" onclick="addPenalty('home')">+ TREST (2 min)</button>
+      <div class="penalties">
+        <strong>Tresty:</strong>
+        <ul id="home-penalties"></ul>
+      </div>
     </div>
 
-    <div>VS</div>
-
+    <!-- Hosté -->
     <div class="team">
-      <h3>Florbal Židenice</h3>
+      <h2>Florbal Židenice</h2>
       <div id="away-score" class="score">0</div>
-      <button onclick="addGoal('away')">+ GÓL HOSTÉ</button>
+      <button class="btn btn-red" onclick="addGoal('away')">+ GÓL</button>
+      <button class="btn btn-yellow" onclick="addPenalty('away')">+ TREST (2 min)</button>
+      <div class="penalties">
+        <strong>Tresty:</strong>
+        <ul id="away-penalties"></ul>
+      </div>
     </div>
   </div>
 
   <script>
+    // Skóre
     let homeScore = 0;
     let awayScore = 0;
+
+    // Časomíra
+    let secondsLeft = 15 * 60;
+    let timerInterval = null;
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
+      const secs = (secondsLeft % 60).toString().padStart(2, '0');
+      document.getElementById('timer').innerText = `${mins}:${secs}`;
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        if (secondsLeft > 0) {
+          secondsLeft--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          alert('Konec třetiny / zápasu!');
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      secondsLeft = 15 * 60;
+      updateTimerDisplay();
+    }
 
     function addGoal(team) {
       if (team === 'home') {
@@ -46,9 +106,19 @@
         awayScore++;
         document.getElementById('away-score').innerText = awayScore;
       }
+    }
+
+    function addPenalty(team) {
+      const playerNum = prompt('Číslo hráče:');
+      if (!playerNum) return;
       
-      // Tady se v budoucnu pošle požadavek na backend API pro živou aktualizaci
-      console.log(`Aktuální skóre: ${homeScore}:${awayScore}`);
+      const currentTime = document.getElementById('timer').innerText;
+      const listId = team === 'home' ? 'home-penalties' : 'away-penalties';
+      const ul = document.getElementById(listId);
+      
+      const li = document.createElement('li');
+      li.innerText = `Číslo #${playerNum} - 2 min (${currentTime})`;
+      ul.appendChild(li);
     }
   </script>
 </body>
