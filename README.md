@@ -1,2 +1,2 @@
 # Brno-Florball-Cup
-BFC 
+BFC tournament system
