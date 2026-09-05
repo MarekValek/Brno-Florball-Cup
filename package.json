@@ -1,0 +1,13 @@
+{
+  "name": "brno-floorball-cup",
+  "version": "1.0.0",
+  "description": "Turnajový systém pro Brno Floorball Cup",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
