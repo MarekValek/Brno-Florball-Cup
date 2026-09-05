@@ -153,44 +153,49 @@
     }
 
     // Vykreslení dat
-    function render() {
-      // Zápasy
-      document.getElementById('matches-list').innerHTML = mockMatches.map(m => `
-        <div class="match-card">
-          <div class="team-name team-home">${m.home}</div>
-          <div class="score-badge">${m.homeScore} : ${m.awayScore}</div>
-          <div class="team-name team-away">${m.away}</div>
-        </div>
-      `).join('');
+    const API_URL = 'https://brno-florball-cup.onrender.com';
 
-      // Tabulka
-      document.getElementById('standings-body').innerHTML = mockStandings.map((t, i) => `
-        <tr>
-          <td><strong>${i + 1}.</strong></td>
-          <td>${t.name}</td>
-          <td>${t.played}</td>
-          <td>${t.wins}</td>
-          <td>${t.draws}</td>
-          <td>${t.losses}</td>
-          <td>${t.goalsFor}:${t.goalsAgainst}</td>
-          <td><strong>${t.points}</strong></td>
-        </tr>
-      `).join('');
+async function loadData() {
+  try {
+    // Načtení zápasů
+    const resMatches = await fetch(`${API_URL}/api/matches`);
+    const matches = await resMatches.json();
+    
+    // Načtení tabulky
+    const resStandings = await fetch(`${API_URL}/api/standings`);
+    const standings = await resStandings.json();
 
-      // Statistiky
-      document.getElementById('stats-body').innerHTML = mockStats.map((s, i) => `
-        <tr>
-          <td><strong>${i + 1}.</strong></td>
-          <td>${s.name}</td>
-          <td>${s.team}</td>
-          <td>${s.goals}</td>
-          <td>${s.assists}</td>
-          <td><strong>${s.points}</strong></td>
-        </tr>
-      `).join('');
-    }
+    // Vykreslení zápasů
+    document.getElementById('matches-list').innerHTML = matches.map(m => `
+      <div class="match-card">
+        <div class="team-name team-home">Tým #${m.home_team_id}</div>
+        <div class="score-badge">${m.home_score} : ${m.away_score}</div>
+        <div class="team-name team-away">Tým #${m.away_team_id}</div>
+      </div>
+    `).join('');
 
-    render();
+    // Vykreslení tabulky
+    document.getElementById('standings-body').innerHTML = standings.map((t, i) => `
+      <tr>
+        <td><strong>${i + 1}.</strong></td>
+        <td>${t.name}</td>
+        <td>${t.played}</td>
+        <td>${t.wins}</td>
+        <td>${t.draws}</td>
+        <td>${t.losses}</td>
+        <td>${t.goalsFor}:${t.goalsAgainst}</td>
+        <td><strong>${t.points}</strong></td>
+      </tr>
+    `).join('');
+
+  } catch (err) {
+    console.error('Chyba při načítání dat z API:', err);
+  }
+}
+
+// Spustit načítání a nastavit automatickou obnovu každých 5 sekund (Live zápas)
+loadData();
+setInterval(loadData, 5000);
   </script>
 </body>
 </html>
