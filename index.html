@@ -8,7 +8,7 @@
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
     .container { max-width: 900px; margin: 0 auto; }
     header { text-align: center; padding: 20px 0; border-bottom: 2px solid #334155; }
-    h1 { margin: 0; color: #ef4444; font-size: 2.2rem; }
+    h1 { margin: 0; color: #ef4444; font-size: 2.2rem; letter-spacing: 1px; }
     p.subtitle { color: #94a3b8; margin-top: 5px; }
     
     section { background: #1e293b; border-radius: 12px; padding: 20px; margin-top: 30px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
@@ -39,14 +39,12 @@
     <!-- ROZPIS A VÝSLEDKY -->
     <section>
       <h2>Zápasy</h2>
-      <div id="matches-list">
-        <p>Načítám zápasy...</p>
-      </div>
+      <div id="matches-list"></div>
     </section>
 
     <!-- TABULKA SKUPINY -->
     <section>
-      <h2>Tabulka skupiny</h2>
+      <h2>Tabulka skupiny A</h2>
       <table>
         <thead>
           <tr>
@@ -60,60 +58,54 @@
             <th>Body</th>
           </tr>
         </thead>
-        <tbody id="standings-body">
-          <tr><td colspan="8">Načítám tabulku...</td></tr>
-        </tbody>
+        <tbody id="standings-body"></tbody>
       </table>
     </section>
   </div>
 
   <script>
-    // Načtení zápasů z API
-    async function loadMatches() {
-      try {
-        const response = await fetch('/api/matches');
-        const matches = await response.json();
-        const container = document.getElementById('matches-list');
-        
-        container.innerHTML = matches.map(m => `
-          <div class="match-card">
-            <div class="team-name team-home">Tým #${m.home_team_id}</div>
-            <div class="score-badge">${m.home_score} : ${m.away_score}</div>
-            <div class="team-name team-away">Tým #${m.away_team_id}</div>
-          </div>
-        `).join('');
-      } catch (err) {
-        console.error('Chyba při načítání zápasů:', err);
-      }
+    // Testovací data pro zobrazení na statickém webu
+    const mockMatches = [
+      { home: 'FBK Bulldogs Brno', away: 'Florbal Židenice', homeScore: 5, awayScore: 3 },
+      { home: 'Florbal Židenice', away: 'Gullivers Brno', homeScore: 2, awayScore: 2 },
+      { home: 'Gullivers Brno', away: 'FBK Bulldogs Brno', homeScore: 1, awayScore: 4 }
+    ];
+
+    const mockStandings = [
+      { name: 'FBK Bulldogs Brno', played: 2, wins: 2, draws: 0, losses: 0, goalsFor: 9, goalsAgainst: 4, points: 6 },
+      { name: 'Gullivers Brno', played: 2, wins: 0, draws: 1, losses: 1, goalsFor: 3, goalsAgainst: 6, points: 1 },
+      { name: 'Florbal Židenice', played: 2, wins: 0, draws: 1, losses: 1, goalsFor: 5, goalsAgainst: 7, points: 1 }
+    ];
+
+    function renderMatches() {
+      const container = document.getElementById('matches-list');
+      container.innerHTML = mockMatches.map(m => `
+        <div class="match-card">
+          <div class="team-name team-home">${m.home}</div>
+          <div class="score-badge">${m.homeScore} : ${m.awayScore}</div>
+          <div class="team-name team-away">${m.away}</div>
+        </div>
+      `).join('');
     }
 
-    // Načtení tabulky z API
-    async function loadStandings() {
-      try {
-        const response = await fetch('/api/standings');
-        const standings = await response.json();
-        const tbody = document.getElementById('standings-body');
-        
-        tbody.innerHTML = standings.map((team, index) => `
-          <tr>
-            <td><strong>${index + 1}.</strong></td>
-            <td>${team.name}</td>
-            <td>${team.played}</td>
-            <td>${team.wins}</td>
-            <td>${team.draws}</td>
-            <td>${team.losses}</td>
-            <td>${team.goalsFor}:${team.goalsAgainst}</td>
-            <td><strong>${team.points}</strong></td>
-          </tr>
-        `).join('');
-      } catch (err) {
-        console.error('Chyba při načítání tabulky:', err);
-      }
+    function renderStandings() {
+      const tbody = document.getElementById('standings-body');
+      tbody.innerHTML = mockStandings.map((team, index) => `
+        <tr>
+          <td><strong>${index + 1}.</strong></td>
+          <td>${team.name}</td>
+          <td>${team.played}</td>
+          <td>${team.wins}</td>
+          <td>${team.draws}</td>
+          <td>${team.losses}</td>
+          <td>${team.goalsFor}:${team.goalsAgainst}</td>
+          <td><strong>${team.points}</strong></td>
+        </tr>
+      `).join('');
     }
 
-    // Inicializace
-    loadMatches();
-    loadStandings();
+    renderMatches();
+    renderStandings();
   </script>
 </body>
 </html>
