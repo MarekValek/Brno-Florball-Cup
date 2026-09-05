@@ -98,7 +98,9 @@
       updateTimerDisplay();
     }
 
-    function addGoal(team) {
+    const API_URL = 'https://brno-florball-cup.onrender.com';
+
+    async function addGoal(team) {
       if (team === 'home') {
         homeScore++;
         document.getElementById('home-score').innerText = homeScore;
@@ -106,8 +108,15 @@
         awayScore++;
         document.getElementById('away-score').innerText = awayScore;
       }
-    }
 
+      // Odeslání nového skóre na server
+      await fetch(`${API_URL}/api/matches/1/score`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ homeScore, awayScore })
+      });
+    }
+    
     function addPenalty(team) {
       const playerNum = prompt('Číslo hráče:');
       if (!playerNum) return;
