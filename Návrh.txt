@@ -12,16 +12,20 @@ Brno Florball Cup (BFC)
   poradatel 2
   možnost vlastního golu
   Trestná střílení
-  Vyloučení
+  Vyloučení + Vyloučení výběr z trestů
   Time out
   Periody
   Čas + kolik se hraje + přidávání/ubírání 
   Score
   Týmy + oddělení podle pozice na zapis + hosté a domácí 
   Logy ze zápasu kdo kdy dal gól atd
+  Registrace týmu a potvrzení příchodu
+  -------
+  + trenér
 - Admin - admin.html (Multiscoreboard)
 - Propozice
 - Haly
 - Rozpisy a výsledky
 - Kontakt
+- Statistiky
 
