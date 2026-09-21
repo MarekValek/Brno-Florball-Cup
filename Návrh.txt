@@ -20,9 +20,10 @@ Brno Florball Cup (BFC)
   Týmy + oddělení podle pozice na zapis + hosté a domácí 
   Logy ze zápasu kdo kdy dal gól atd
   Registrace týmu a potvrzení příchodu
+  Nájezdy po konci - dal/nedal, náhlá smrt
   -------
   + trenér
-- Admin - admin.html (Multiscoreboard)
+- Admin - admin.html (Multiscoreboard) + Nastavení online
 - Propozice
 - Haly
 - Rozpisy a výsledky
