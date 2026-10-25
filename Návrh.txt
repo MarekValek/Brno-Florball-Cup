@@ -30,3 +30,22 @@ Brno Florball Cup (BFC)
 - Kontakt
 - Statistiky
 
+bfc-web/
+│
+├── index.html                 # Hlavní rozcestník / Hlavní strana
+├── propozice.html             # Propozice turnaje
+├── haly.html                  # Hrací haly
+├── rozpisy.html               # Rozpisy a výsledky
+├── statistiky.html            # Statistiky a kanadské bodování
+├── kontakt.html               # Kontaktní údaje
+│
+├── admin/
+│   └── admin.html             # Admin (Multiscoreboard + nastavení online)
+│
+├── poradatel/
+│   ├── profil.html            # Profil pořadatele (jméno, účet, tričko)
+│   └── zapis.html             # Detailní zápis o utkání (časomíra, góly, vlastní góly, tresty, nájezdy, logy)
+│
+└── assets/
+    └── logo.svg               # Logo BFC (případně složka pro obrázky)
+
