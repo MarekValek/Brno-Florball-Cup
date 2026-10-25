@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozpisy a výsledky - BFC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-black text-white">BFC <span class="text-bfcRed">Rozpisy</span></a>
+            <nav class="space-x-2 text-sm font-semibold">
+                <a href="index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
+                <a href="rozpisy.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Rozpisy a výsledky</a>
+                <a href="statistiky.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Statistiky</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-6">
+        <h1 class="text-3xl font-black text-white">Rozpis zápasů a průběžné výsledky</h1>
+        
+        <div class="bg-bfcCard border border-bfcBorder rounded-2xl p-6 space-y-4">
+            <div class="flex justify-between items-center border-b border-bfcBorder pb-3 text-xs text-gray-400">
+                <span>09:40 &bull; Hřiště 1</span>
+                <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 font-bold rounded">Odehráno</span>
+            </div>
+            <div class="flex justify-between items-center text-sm font-bold">
+                <span class="text-white">TROOPERS Orange vs Bulldogs Brno Black</span>
+                <span class="text-bfcRed text-lg font-black">3 : 2</span>
+            </div>
+        </div>
+
+        <div class="bg-bfcCard border border-bfcBorder rounded-2xl p-6 space-y-4">
+            <div class="flex justify-between items-center border-b border-bfcBorder pb-3 text-xs text-gray-400">
+                <span>10:20 &bull; Hřiště 2</span>
+                <span class="px-2 py-0.5 bg-amber-500/20 text-amber-400 font-bold rounded">Probíhá</span>
+            </div>
+            <div class="flex justify-between items-center text-sm font-bold">
+                <span class="text-white">Aligators WUTC vs Orel Vyškov</span>
+                <span class="text-bfcRed text-lg font-black">1 : 1</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
