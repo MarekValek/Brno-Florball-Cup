@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Časomíra (Admin) - BFC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcCardHover: '#25282C', bfcBorder: '#2E3238'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-black text-white">BFC <span class="text-bfcRed">Časomíra</span></a>
+            <a href="index.html" class="px-4 py-2 text-sm font-bold bg-bfcCard hover:bg-bfcCardHover rounded-lg">Zpět na web</a>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-6">
+        <div class="flex items-center justify-between border-b border-bfcBorder pb-4">
+            <h1 class="text-2xl font-black text-white">Správa hřišť a živá časomíra</h1>
+            <div class="flex space-x-2">
+                <button onclick="setCourtsCount(1)" id="btn-court-1" class="px-3 py-1 bg-bfcCard text-xs font-bold rounded-lg border border-bfcBorder">1 hřiště</button>
+                <button onclick="setCourtsCount(2)" id="btn-court-2" class="px-3 py-1 bg-bfcCard text-xs font-bold rounded-lg border border-bfcBorder">2 hřiště</button>
+                <button onclick="setCourtsCount(3)" id="btn-court-3" class="px-3 py-1 bg-bfcRed text-white text-xs font-bold rounded-lg">3 hřiště</button>
+            </div>
+        </div>
+
+        <!-- Hromadné tlačítka -->
+        <div class="flex space-x-3 bg-bfcCard p-4 rounded-xl border border-bfcBorder">
+            <button onclick="globalAction('start')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg">Spustit vše</button>
+            <button onclick="globalAction('pause')" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-lg">Zastavit vše</button>
+            <button onclick="globalAction('reset')" class="px-4 py-2 bg-bfcCardHover border border-bfcBorder text-white font-bold text-xs rounded-lg">Reset vše</button>
+        </div>
+
+        <div id="courts-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Vykresluje se z JS -->
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        window.onload = () => { renderCourts(); lucide.createIcons(); };
+    </script>
+</body>
+</html>
