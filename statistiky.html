@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiky - BFC Brno Florball Cup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-black text-white">BFC <span class="text-bfcRed">Statistiky</span></a>
+            <nav class="space-x-2 text-sm font-semibold">
+                <a href="index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
+                <a href="statistiky.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Statistiky</a>
+                <a href="kontakt.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-6">
+        <h1 class="text-3xl font-black text-white">Statistiky turnaje</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="award" class="text-bfcRed"></i>
+                    <span>Kanadské bodování</span>
+                </h3>
+                <div class="text-sm space-y-2 text-gray-300">
+                    <div class="flex justify-between border-b border-bfcBorder pb-2"><span>1. Filip Svoboda (TROOPERS)</span><strong class="text-white">8 bodů (5+3)</strong></div>
+                    <div class="flex justify-between border-b border-bfcBorder pb-2"><span>2. Jan Horák (Bulldogs)</span><strong class="text-white">6 bodů (4+2)</strong></div>
+                    <div class="flex justify-between"><span>3. Tomáš Černý (TROOPERS)</span><strong class="text-white">5 bodů (2+3)</strong></div>
+                </div>
+            </div>
+
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="shield-alert" class="text-bfcRed"></i>
+                    <span>Fair Play & Tresty</span>
+                </h3>
+                <div class="text-sm space-y-2 text-gray-300">
+                    <div class="flex justify-between border-b border-bfcBorder pb-2"><span>Nejtrestanější tým</span><strong class="text-white">Aligators WUTC (4 min)</strong></div>
+                    <div class="flex justify-between"><span>Celkem trestných střílení</span><strong class="text-white">2</strong></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
