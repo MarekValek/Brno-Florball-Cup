@@ -3,84 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BFC - Brno Florball Cup</title>
+    <title>BFC - Brno Florball Cup | Hlavní strana</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        bfcRed: '#E31B23',
-                        bfcDark: '#121316',
-                        bfcCard: '#1C1E22',
-                        bfcCardHover: '#25282C',
-                        bfcBorder: '#2E3238'
-                    }
-                }
-            }
-        }
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
-        body { font-family: 'Montserrat', sans-serif; }
-    </style>
 </head>
-<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col selection:bg-bfcRed selection:text-white">
-
-    <!-- NAVIGACE -->
-    <header class="sticky top-0 z-50 bg-bfcDark/95 backdrop-blur border-b border-bfcBorder">
-      <img src="https://github.com/MarekValek/Brno-Florball-Cup/blob/main/BFC Logo.png?raw=true" class="logo">
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center font-black text-bfcRed text-lg">BFC</div>
-                <span class="text-xl font-black tracking-wider text-white">BRNO FLORBALL <span class="text-bfcRed">CUP</span></span>
+                <div class="w-10 h-10 rounded-xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center font-black text-bfcRed">BFC</div>
+                <span class="text-xl font-black text-white">BRNO FLORBALL <span class="text-bfcRed">CUP</span></span>
             </a>
-            <nav class="hidden md:flex items-center space-x-2">
-                <a href="index.html" class="px-4 py-2 rounded-lg text-sm font-semibold bg-bfcRed text-white">Úvod</a>
-                <a href="kategorie/mladsi-elevove.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white hover:bg-bfcCard">Kategorie</a>
-                <a href="propozice.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white hover:bg-bfcCard">Propozice</a>
-                <a href="casomira.html" class="px-4 py-2 rounded-lg text-sm font-semibold text-bfcRed border border-bfcRed/30 hover:bg-bfcRed/10">Časomíra</a>
+            <nav class="hidden md:flex space-x-2 text-sm font-semibold">
+                <a href="index.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Hlavní strana</a>
+                <a href="poradatel/profil.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Pořadatel</a>
+                <a href="admin/admin.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Admin</a>
+                <a href="propozice.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Propozice</a>
+                <a href="haly.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Haly</a>
+                <a href="rozpisy.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Rozpisy</a>
+                <a href="statistiky.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Statistiky</a>
+                <a href="kontakt.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Kontakt</a>
             </nav>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-12">
-        <!-- Hero Banner -->
-        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-bfcCard to-bfcBorder border border-bfcBorder p-8 md:p-12">
-            <div class="max-w-2xl space-y-6">
-                <span class="px-3 py-1 rounded-full bg-bfcRed/10 border border-bfcRed/30 text-bfcRed text-xs font-bold uppercase">Brněnský florbalový turnaj</span>
-                <h1 class="text-4xl md:text-6xl font-black text-white">BRNO FLORBALL <span class="text-bfcRed">CUP</span></h1>
-                <p class="text-gray-400">Vítejte na oficiálním portálu turnaje BFC. Prohlédněte si věkové kategorie, soupisky týmů a sledování zápasů.</p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="kategorie/mladsi-elevove.html" class="px-6 py-3 rounded-xl bg-bfcRed text-white font-bold hover:bg-red-700 transition">Prohlédnout kategorie</a>
-                    <a href="casomira.html" class="px-6 py-3 rounded-xl bg-bfcCardHover text-white font-bold border border-bfcBorder hover:bg-bfcBorder transition">Živá časomíra</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Přehled kategorií -->
-        <div class="space-y-6">
-            <h2 class="text-2xl font-black text-white">Turnajové kategorie</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <a href="kategorie/mladsi-elevove.html" class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl hover:border-bfcRed transition group">
-                    <h3 class="text-lg font-bold text-white group-hover:text-bfcRed">Mladší elévové 3+1</h3>
-                    <p class="text-xs text-gray-400 mt-1">Ročníky 2016 a mladší</p>
-                    <span class="inline-block mt-4 text-xs font-bold text-bfcRed">Zobrazit týmy &rarr;</span>
-                </a>
-                <a href="kategorie/template.html" class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl hover:border-bfcRed transition group opacity-60">
-                    <h3 class="text-lg font-bold text-white group-hover:text-bfcRed">+ Přidat novou kategorii</h3>
-                    <p class="text-xs text-gray-400 mt-1">Klonováním souboru template.html</p>
-                </a>
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-8">
+        <div class="bg-gradient-to-r from-bfcCard to-bfcBorder border border-bfcBorder rounded-3xl p-8 md:p-12 space-y-6">
+            <span class="px-3 py-1 rounded-full bg-bfcRed/10 border border-bfcRed/30 text-bfcRed text-xs font-bold uppercase">Oficiální turnajový portál</span>
+            <h1 class="text-4xl md:text-6xl font-black text-white">BRNO FLORBALL <span class="text-bfcRed">CUP</span></h1>
+            <p class="text-gray-400 max-w-2xl">Vítejte v centrálním systému BFC. Všechny moduly jsou oddělené, takže v případě úprav pracujete vždy jen s konkrétním souborem.</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="poradatel/zapis.html" class="px-6 py-3 rounded-xl bg-bfcRed text-white font-bold hover:bg-red-700 transition">Otevřít zápis o utkání</a>
+                <a href="admin/admin.html" class="px-6 py-3 rounded-xl bg-bfcCardHover border border-bfcBorder font-bold hover:bg-bfcBorder transition">Admin Multiscoreboard</a>
             </div>
         </div>
     </main>
 
-    <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">
-        &copy; 2026 Brno Florball Cup (BFC)
-    </footer>
+    <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
     <script>lucide.createIcons();</script>
 </body>
 </html>
