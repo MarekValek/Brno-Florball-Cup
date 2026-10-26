@@ -6,14 +6,17 @@
     <title>Haly - BFC Brno Florball Cup</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcCardHover: '#25282C', bfcBorder: '#2E3238' } } } }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-xl font-black text-white">BFC <span class="text-bfcRed">Haly</span></a>
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center font-black text-bfcRed">BFC</div>
+                <span class="text-xl font-black text-white">BRNO FLORBALL <span class="text-bfcRed">CUP</span></span>
+            </a>
             <nav class="space-x-2 text-sm font-semibold">
                 <a href="index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
                 <a href="haly.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Haly</a>
@@ -23,22 +26,100 @@
     </header>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-6">
-        <h1 class="text-3xl font-black text-white">Hrací haly</h1>
+        <div>
+            <h1 class="text-3xl font-black text-white">Hrací haly</h1>
+            <p class="text-gray-400 text-sm">Přehled sportovních hal a jejich zázemí na turnaji BFC.</p>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-2">
-                <h3 class="text-xl font-bold text-white">SH Moravany u Brna</h3>
-                <p class="text-xs text-bfcRed font-bold">Hřiště 1 a Hřiště 2</p>
-                <p class="text-sm text-gray-300">Hlavní centrální hala turnaje s plným zázemím pro týmy a online časomírou.</p>
+            
+            <!-- Hala 1: Moravany -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl flex flex-col justify-between space-y-6 hover:border-bfcRed/50 transition">
+                <div class="flex flex-col sm:flex-row justify-between gap-4">
+                    <div class="space-y-2 flex-grow">
+                        <h3 class="text-xl font-bold text-white">SH Moravany u Brna</h3>
+                        <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">Hřiště 1 a Hřiště 2</p>
+                        <p class="text-sm text-gray-300">Hlavní centrální hala turnaje s plným zázemím pro týmy a online časomírou.</p>
+                    </div>
+                    <!-- Obrázek vpravo -->
+                    <div class="w-full sm:w-32 h-28 rounded-xl bg-bfcCardHover border border-bfcBorder overflow-hidden flex-shrink-0 flex items-center justify-center">
+                        <!-- Zde si pak uprav cestu k fotce, např. src="moravany.jpg" -->
+                        <img src="Logo BFC.png" alt="SH Moravany" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Doplňkové info (bar, kapacita, adresa) -->
+                <div class="grid grid-cols-2 gap-3 pt-4 border-t border-bfcBorder text-xs text-gray-300">
+                    <div><strong class="text-white block">Adresa:</strong> Sportovní 1, Moravany</div>
+                    <div><strong class="text-white block">Kapacita:</strong> 300 diváků</div>
+                    <div><strong class="text-white block">Občerstvení / Bar:</strong> Otevřen po celý den</div>
+                    <div><strong class="text-white block">Šatny:</strong> K dispozici 4 šatny</div>
+                </div>
+
+                <!-- Tlačítko pro detail -->
+                <button onclick="openHallDetail('SH Moravany u Brna')" class="w-full py-2.5 bg-bfcCardHover border border-bfcBorder text-white font-bold text-xs rounded-xl hover:bg-bfcBorder transition flex items-center justify-center space-x-1">
+                    <span>Zobrazit kompletní info</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
             </div>
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-2">
-                <h3 class="text-xl font-bold text-white">SH Rosice</h3>
-                <p class="text-xs text-bfcRed font-bold">Hřiště 3</p>
-                <p class="text-sm text-gray-300">Doplňková hrací hala pro mladší věkové kategorie.</p>
+
+            <!-- Hala 2: Rosice -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl flex flex-col justify-between space-y-6 hover:border-bfcRed/50 transition">
+                <div class="flex flex-col sm:flex-row justify-between gap-4">
+                    <div class="space-y-2 flex-grow">
+                        <h3 class="text-xl font-bold text-white">SH Rosice</h3>
+                        <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">Hřiště 3</p>
+                        <p class="text-sm text-gray-300">Doplňková hrací hala pro mladší věkové kategorie.</p>
+                    </div>
+                    <!-- Obrázek vpravo -->
+                    <div class="w-full sm:w-32 h-28 rounded-xl bg-bfcCardHover border border-bfcBorder overflow-hidden flex-shrink-0 flex items-center justify-center">
+                        <img src="Logo BFC.png" alt="SH Rosice" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Doplňkové info -->
+                <div class="grid grid-cols-2 gap-3 pt-4 border-t border-bfcBorder text-xs text-gray-300">
+                    <div><strong class="text-white block">Adresa:</strong> Zbýšovská 1135, Rosice</div>
+                    <div><strong class="text-white block">Kapacita:</strong> 200 diváků</div>
+                    <div><strong class="text-white block">Občerstvení / Bar:</strong> Automat + bufet</div>
+                    <div><strong class="text-white block">Šatny:</strong> K dispozici 3 šatny</div>
+                </div>
+
+                <!-- Tlačítko pro detail -->
+                <button onclick="openHallDetail('SH Rosice')" class="w-full py-2.5 bg-bfcCardHover border border-bfcBorder text-white font-bold text-xs rounded-xl hover:bg-bfcBorder transition flex items-center justify-center space-x-1">
+                    <span>Zobrazit kompletní info</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
             </div>
+
         </div>
     </main>
 
+    <!-- Modální okno pro detail haly (otevře se po kliknutí na tlačítko) -->
+    <div id="hall-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-bfcCard border border-bfcBorder rounded-3xl max-w-lg w-full p-6 md:p-8 space-y-4 relative shadow-2xl">
+            <button onclick="closeHallDetail()" class="absolute top-6 right-6 p-2 rounded-xl bg-bfcCardHover text-gray-400 hover:text-white transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h2 id="modal-title" class="text-2xl font-black text-white">Název haly</h2>
+            <div id="modal-body" class="text-sm text-gray-300 space-y-3">
+                <!-- Sem se doplní podrobnější text, pravidla haly, parkování atd. -->
+                <p>Zde budou podrobné informace o vybrané hale, pokyny pro parkování, rozvrh šaten a další užitečné detaily pro týmy a fanoušky.</p>
+            </div>
+        </div>
+    </div>
+
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
-    <script>lucide.createIcons();</script>
+    
+    <script>
+        function openHallDetail(hallName) {
+            document.getElementById('modal-title').textContent = hallName;
+            document.getElementById('hall-modal').classList.remove('hidden');
+        }
+        function closeHallDetail() {
+            document.getElementById('hall-modal').classList.add('hidden');
+        }
+        lucide.createIcons();
+    </script>
 </body>
 </html>
