@@ -2,33 +2,36 @@ Brno Florball Cup (BFC)
 1. Logo
 2. Web
 - Hlavní strana - bfc.html
+- Propozice - propozice.html
+- Haly - haly.html
+- Rozpisy - rozpisy.html
+- Statistiky - statistiky.html
+- Kontakt - kontakt.html
 - Pořadatel - pořadatel.html (vlastní profil a ovládání výsledků + hl Pořadatel admin věci)
-  poradatel 1
-  Jméno a Příjmení
-  Pozice
-  Číslo uctu
-  Velikost tricka
+  - poradatel.html
+    - profil.html
+    Jméno a Příjmení
+    Pozice
+    Číslo uctu
+    Velikost tricka
   ---------------
-  poradatel 2
-  možnost vlastního golu
-  Trestná střílení
-  Vyloučení + Vyloučení výběr z trestů
-  Time out
-  Periody
-  Čas + kolik se hraje + přidávání/ubírání 
-  Score
-  Týmy + oddělení podle pozice na zapis + hosté a domácí 
-  Logy ze zápasu kdo kdy dal gól atd
-  Registrace týmu a potvrzení příchodu
-  Nájezdy po konci - dal/nedal, náhlá smrt
+    - zápis.html
+    možnost vlastního golu
+    Trestná střílení
+    Vyloučení + Vyloučení výběr z trestů
+    Time out
+    Periody
+    Čas + kolik se hraje + přidávání/ubírání 
+    Score
+    Týmy + oddělení podle pozice na zapis + hosté a domácí 
+    Logy ze zápasu kdo kdy dal gól atd
+    Registrace týmu a potvrzení příchodu
+    Nájezdy po konci - dal/nedal, náhlá smrt
   -------
-  + trenér
-- Admin - admin.html (Multiscoreboard) + Nastavení online
-- Propozice
-- Haly
-- Rozpisy a výsledky
-- Kontakt
-- Statistiky
+  + trenér (profil trenéra, viditelnost svého týmu)
+- Admin - admin.html
+Multiscoreboard) + Nastavení online
+Viditelnost databáze pořadatelských profilů, trenérů a týmů 
 
 bfc-web/
 │
