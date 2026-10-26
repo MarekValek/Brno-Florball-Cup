@@ -61,10 +61,10 @@
                         <i data-lucide="layout-grid" class="w-5 h-5"></i>
                         <h3 class="font-bold text-white text-sm uppercase tracking-wider">Vyberte kategorii</h3>
                     </div>
-                    <div class="space-y-1.5 text-sm font-medium">
-                        <a href="#" class="block px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition">Muži / Elite 3+1</a>
-                        <a href="#" class="block px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition">Ženy</a>
-                        <a href="#" class="block px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition">Junioři / Dorost</a>
+                    <div id="category-menu" class="space-y-1.5 text-sm font-medium">
+                        <button onclick="switchCategory('muzi')" class="w-full text-left px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition cat-btn" data-cat="muzi">Muži / Elite 3+1</button>
+                        <button onclick="switchCategory('zeny')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn" data-cat="zeny">Ženy</button>
+                        <button onclick="switchCategory('juniori')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn" data-cat="juniori">Junioři / Dorost</button>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                         </div>
                         <div>
                             <span class="text-xs text-gray-400 font-bold uppercase">Zobrazená kategorie</span>
-                            <h2 class="text-lg font-black text-white">Muži / Elite 3+1</h2>
+                            <h2 id="cat-title" class="text-lg font-black text-white">Muži / Elite 3+1</h2>
                         </div>
                     </div>
                     <a href="admin/registrace.html" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-bfcRed text-white font-bold text-xs uppercase tracking-wider hover:bg-red-700 transition shadow-lg text-center">
@@ -95,7 +95,7 @@
                         <h3 class="text-xl font-black text-white">Základní informace</h3>
                     </div>
 
-                    <p class="text-gray-300 text-sm leading-relaxed">
+                    <p id="cat-desc" class="text-gray-300 text-sm leading-relaxed">
                         Brno Florball Cup v kategorii Muži/Elite je špičkový turnaj, který se odehrává v moderně vybavených sportovních halách v Brně (<a href="haly.html" class="text-bfcRed hover:underline">SH Moravany, SH Tuřany</a>). Naším cílem bylo rozetřít základní půldenní koncept turnaje a navýšit počet zápasů tak, aby hráč získal co největší herní vyžití. 
                     </p>
 
@@ -147,12 +147,12 @@
                         <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
                             <i data-lucide="users" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
                             <span class="block text-[10px] text-gray-400 uppercase font-bold">Počet týmů</span>
-                            <span class="text-xs font-bold text-white">Max. 16</span>
+                            <span id="cat-teams" class="text-xs font-bold text-white">Max. 16</span>
                         </div>
                         <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder col-span-2 sm:col-span-1">
                             <i data-lucide="credit-card" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
                             <span class="block text-[10px] text-gray-400 uppercase font-bold">Startovné</span>
-                            <span class="text-xs font-bold text-white">3 500 Kč</span>
+                            <span id="cat-price" class="text-xs font-bold text-white">3 500 Kč</span>
                         </div>
                     </div>
                 </div>
@@ -220,6 +220,47 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
+
+        const categoryData = {
+            muzi: {
+                title: "Muži / Elite 3+1",
+                desc: "Brno Florball Cup v kategorii Muži/Elite je špičkový turnaj, který se odehrává v moderně vybavených sportovních halách v Brně (<a href='haly.html' class='text-bfcRed hover:underline'>SH Moravany, SH Tuřany</a>). Naším cílem bylo rozetřít základní půldenní koncept turnaje a navýšit počet zápasů tak, aby hráč získal co největší herní vyžití.",
+                teams: "Max. 16",
+                price: "3 500 Kč"
+            },
+            zeny: {
+                title: "Ženy",
+                desc: "Kategorie Ženy na Brno Florball Cupu nabízí skvělé zápasy v přátelské i bojovné atmosféře. Turnaj probíhá v moderních halách s plným zázemím, kvalitním občerstvením a online časomírou pro každý zápas.",
+                teams: "Max. 12",
+                price: "3 000 Kč"
+            },
+            juniori: {
+                title: "Junioři / Dorost",
+                desc: "Mládežnická kategorie určená pro juniorní týmy a dorostence. Důraz je kladen na fair play, velký příděl zápasů a skvělý herní rozvoj mladých florbalistů v parádním brněnském prostředí.",
+                teams: "Max. 12",
+                price: "3 000 Kč"
+            }
+        };
+
+        function switchCategory(catKey) {
+            const data = categoryData[catKey];
+            if(!data) return;
+
+            document.getElementById('cat-title').innerText = data.title;
+            document.getElementById('cat-desc').innerHTML = data.desc;
+            document.getElementById('cat-teams').innerText = data.teams;
+            document.getElementById('cat-price').innerText = data.price;
+
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                if(btn.getAttribute('data-cat') === catKey) {
+                    btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition cat-btn";
+                } else {
+                    btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn";
+                }
+            });
+        }
+
         lucide.createIcons();
     </script>
 </body>
