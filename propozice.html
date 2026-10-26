@@ -49,81 +49,165 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-8">
-        <div>
-            <h1 class="text-3xl font-black text-white">Propozice a pravidla turnaje</h1>
-            <p class="text-gray-400 text-sm">Oficiální propozice, termíny a podmínky účasti na Brno Florball Cup.</p>
-        </div>
-
-        <!-- Hlavní grid propozic -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
+        
+        <!-- Hlavní layout: Vlevo menu kategorií, vpravo obsah propozic -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
-            <!-- Karta 1: Termín a místo -->
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
-                <div class="flex items-center space-x-3 text-bfcRed">
-                    <i data-lucide="calendar" class="w-6 h-6"></i>
-                    <h3 class="text-lg font-bold text-white">Termín a místo</h3>
+            <!-- LEVÝ SLOUPEC: Výběr kategorií -->
+            <div class="lg:col-span-1 space-y-4">
+                <div class="bg-bfcCard border border-bfcBorder p-4 rounded-2xl space-y-3 sticky top-28">
+                    <div class="flex items-center space-x-2 text-bfcRed pb-2 border-b border-bfcBorder">
+                        <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                        <h3 class="font-bold text-white text-sm uppercase tracking-wider">Vyberte kategorii</h3>
+                    </div>
+                    <div class="space-y-1.5 text-sm font-medium">
+                        <a href="#" class="block px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition">Muži / Elite 3+1</a>
+                        <a href="#" class="block px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition">Ženy</a>
+                        <a href="#" class="block px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition">Junioři / Dorost</a>
+                    </div>
                 </div>
-                <p class="text-gray-300 leading-relaxed">
-                    Turnaj se koná v průběhu víkendu v moderně vybavených sportovních halách v Brně a okolí (<a href="haly.html" class="text-bfcRed hover:underline">SH Moravany, SH Tuřany, SH Rosice</a>).
-                </p>
             </div>
 
-            <!-- Karta 2: Kategorie -->
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
-                <div class="flex items-center space-x-3 text-bfcRed">
-                    <i data-lucide="users" class="w-6 h-6"></i>
-                    <h3 class="text-lg font-bold text-white">Hrací kategorie</h3>
+            <!-- PRAVÝ SLOUPEC: Hlavní obsah propozic -->
+            <div class="lg:col-span-3 space-y-6">
+                
+                <!-- Horní lišta vybrané kategorie + Registrovat -->
+                <div class="bg-bfcCard border border-bfcBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center text-bfcRed">
+                            <i data-lucide="trophy" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400 font-bold uppercase">Zobrazená kategorie</span>
+                            <h2 class="text-lg font-black text-white">Muži / Elite 3+1</h2>
+                        </div>
+                    </div>
+                    <a href="admin/registrace.html" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-bfcRed text-white font-bold text-xs uppercase tracking-wider hover:bg-red-700 transition shadow-lg text-center">
+                        Registrovat tým
+                    </a>
                 </div>
-                <ul class="text-gray-300 space-y-1.5">
-                    <li>• <strong>Muži / Elite</strong> (otevřená kategorie)</li>
-                    <li>• <strong>Ženy</strong></li>
-                    <li>• <strong>Junioři / Dorost</strong> (mládežnické kategorie)</li>
-                </ul>
-            </div>
 
-            <!-- Karta 3: Startovné -->
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
-                <div class="flex items-center space-x-3 text-bfcRed">
-                    <i data-lucide="credit-card" class="w-6 h-6"></i>
-                    <h3 class="text-lg font-bold text-white">Startovné</h3>
-                </div>
-                <p class="text-gray-300 leading-relaxed">
-                    Výše startovného se odvíjí od přihlášeného týmu a termínu úhrady. Zahrnuje zajištění rozhodčích, online časomíry, zdravotní služby a ceny pro vítěze.
-                </p>
-            </div>
+                <!-- 1. ZÁKLADNÍ INFORMACE -->
+                <div class="bg-bfcCard border border-bfcBorder p-6 md:p-8 rounded-3xl space-y-6">
+                    <div class="flex items-center space-x-3 text-bfcRed border-b border-bfcBorder pb-4">
+                        <i data-lucide="info" class="w-6 h-6"></i>
+                        <h3 class="text-xl font-black text-white">Základní informace</h3>
+                    </div>
 
-            <!-- Karta 4: Hrací systém -->
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
-                <div class="flex items-center space-x-3 text-bfcRed">
-                    <i data-lucide="trophy" class="w-6 h-6"></i>
-                    <h3 class="text-lg font-bold text-white">Hrací systém</h3>
-                </div>
-                <p class="text-gray-300 leading-relaxed">
-                    Hraje se dle platných pravidel Českého florbalu. Základní skupiny a následný play-off pavouk. Garantovaný minimální počet zápasů pro každý tým.
-                </p>
-            </div>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Brno Florball Cup v kategorii Muži/Elite je špičkový turnaj, který se odehrává v moderně vybavených sportovních halách v Brně (<a href="haly.html" class="text-bfcRed hover:underline">SH Moravany, SH Tuřany</a>). Naším cílem bylo rozetřít základní půldenní koncept turnaje a navýšit počet zápasů tak, aby hráč získal co největší herní vyžití. 
+                    </p>
 
-            <!-- Karta 5: Registrace a soupiska -->
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
-                <div class="flex items-center space-x-3 text-bfcRed">
-                    <i data-lucide="file-text" class="w-6 h-6"></i>
-                    <h3 class="text-lg font-bold text-white">Registrace týmů</h3>
-                </div>
-                <p class="text-gray-300 leading-relaxed">
-                    Zástupce týmu (trenér/kapitán) je povinen potvrdit příchod a zkontrolovat soupisku u stolku pořadatelů minimálně 30 minut před prvním zápasem.
-                </p>
-            </div>
+                    <!-- Bloky vedle sebe (2x2 grid) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
+                            <span class="text-gray-200 font-medium">Garance minimálně 5 odehraných zápasů</span>
+                        </div>
+                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
+                            <span class="text-gray-200 font-medium">Dvě kategorie: Výkonnostní a standardní</span>
+                        </div>
+                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
+                            <span class="text-gray-200 font-medium">Velikost hřiště: dle pravidel 3+1</span>
+                        </div>
+                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
+                            <span class="text-gray-200 font-medium">Skupiny a následný play-off pavouk</span>
+                        </div>
+                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
+                            <span class="text-gray-200 font-medium">Čas v základní části: 2x10 min. hrubého</span>
+                        </div>
+                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
+                            <span class="text-gray-200 font-medium">Čas v play-off: 2x10 min. čistého</span>
+                        </div>
+                    </div>
 
-            <!-- Karta 6: Pravidla a chování -->
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
-                <div class="flex items-center space-x-3 text-bfcRed">
-                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
-                    <h3 class="text-lg font-bold text-white">Pravidla a fair play</h3>
+                    <!-- Spodní infografika (5 ikon vedle sebe) -->
+                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-4 border-t border-bfcBorder text-center">
+                        <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
+                            <i data-lucide="map-pin" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
+                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Místo</span>
+                            <span class="text-xs font-bold text-white">SH Moravany</span>
+                        </div>
+                        <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
+                            <i data-lucide="calendar" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
+                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Termín</span>
+                            <span class="text-xs font-bold text-white">Víkend 2026</span>
+                        </div>
+                        <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
+                            <i data-lucide="shield" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
+                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Rozhodčí</span>
+                            <span class="text-xs font-bold text-white">Delegovaní ČF</span>
+                        </div>
+                        <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
+                            <i data-lucide="users" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
+                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Počet týmů</span>
+                            <span class="text-xs font-bold text-white">Max. 16</span>
+                        </div>
+                        <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder col-span-2 sm:col-span-1">
+                            <i data-lucide="credit-card" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
+                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Startovné</span>
+                            <span class="text-xs font-bold text-white">3 500 Kč</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-gray-300 leading-relaxed">
-                    Všichni účastníci jsou povinni dodržovat řád hracích hal (zejména povinnou sálovou obuv bez černé podrážky) a duch fair play.
-                </p>
+
+                <!-- 2. HERNÍ SYSTÉM -->
+                <div class="bg-bfcCard border border-bfcBorder p-6 md:p-8 rounded-3xl space-y-6">
+                    <div class="flex items-center space-x-3 text-bfcRed border-b border-bfcBorder pb-4">
+                        <i data-lucide="trophy" class="w-6 h-6"></i>
+                        <h3 class="text-xl font-black text-white">Herní systém</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <!-- Box A -->
+                        <div class="bg-bfcDark p-5 rounded-2xl border border-bfcBorder space-y-3">
+                            <h4 class="font-bold text-white text-xs uppercase tracking-wider text-bfcRed">Základní skupiny</h4>
+                            <p class="text-gray-300 text-xs leading-relaxed">
+                                Skupiny po 4 týmech. Každý tým odehraje tři utkání dle rozlosované tabulky. Hřiště 3+1. Čas v základní části: 2x10 hrubého. Čas v play-off: 2x10 čistého.
+                            </p>
+                        </div>
+                        <!-- Box B -->
+                        <div class="bg-bfcDark p-5 rounded-2xl border border-bfcBorder space-y-3">
+                            <h4 class="font-bold text-white text-xs uppercase tracking-wider text-bfcRed">Bodování & Postup</h4>
+                            <ul class="text-gray-300 text-xs space-y-1">
+                                <li>• <strong>Výhra:</strong> 3 body</li>
+                                <li>• <strong>Remíza:</strong> 1 bod</li>
+                                <li>• <strong>Prohra:</strong> 0 bodů</li>
+                                <li class="pt-2">• Po základní části postupují týmy do <strong>play-off A</strong> nebo <strong>play-off B</strong> na základě umístění v tabulce.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. DODATEČNÉ INFORMACE -->
+                <div class="bg-bfcCard border border-bfcBorder p-6 md:p-8 rounded-3xl space-y-4">
+                    <div class="flex items-center space-x-3 text-bfcRed border-b border-bfcBorder pb-4">
+                        <i data-lucide="alert-circle" class="w-6 h-6"></i>
+                        <h3 class="text-xl font-black text-white">Dodatečné informace</h3>
+                    </div>
+
+                    <ul class="text-gray-300 text-xs space-y-3 leading-relaxed">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-bfcRed font-bold">•</span>
+                            <span><strong>Startovné:</strong> Jsme nastavili jako kombinaci poplatku za tým a za jednotlivého hráče, aby náklady co nejlépe odpovídaly skutečnému počtu účastníků. Díky tomu je cena spravedlivě rozdělena mezi menší i větší týmy.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-bfcRed font-bold">•</span>
+                            <span><strong>Pořadatel se vyhrazuje právo</strong> na změnu propozic a případné zrušení akce při nízké účasti týmů. Garance zápasů je platná při plném obsazení turnaje.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-bfcRed font-bold">•</span>
+                            <span><strong>Uzávěrka přihlášek</strong> je do 15. 8. 2026. Startovné musí být zaplaceno do 25. 8. 2026.</span>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
