@@ -41,14 +41,11 @@
                         <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">Hřiště 1 a Hřiště 2</p>
                         <p class="text-sm text-gray-300">Hlavní centrální hala turnaje s plným zázemím pro týmy a online časomírou.</p>
                     </div>
-                    <!-- Obrázek vpravo -->
                     <div class="w-full sm:w-32 h-28 rounded-xl bg-bfcCardHover border border-bfcBorder overflow-hidden flex-shrink-0 flex items-center justify-center">
-                        <!-- Zde si pak uprav cestu k fotce, např. src="moravany.jpg" -->
                         <img src="Logo BFC.png" alt="SH Moravany" class="w-full h-full object-cover">
                     </div>
                 </div>
 
-                <!-- Doplňkové info (bar, kapacita, adresa) -->
                 <div class="grid grid-cols-2 gap-3 pt-4 border-t border-bfcBorder text-xs text-gray-300">
                     <div><strong class="text-white block">Adresa:</strong> Sportovní 1, Moravany</div>
                     <div><strong class="text-white block">Kapacita:</strong> 300 diváků</div>
@@ -56,8 +53,7 @@
                     <div><strong class="text-white block">Šatny:</strong> K dispozici 4 šatny</div>
                 </div>
 
-                <!-- Tlačítko pro detail -->
-                <button onclick="openHallDetail('SH Moravany u Brna')" class="w-full py-2.5 bg-bfcCardHover border border-bfcBorder text-white font-bold text-xs rounded-xl hover:bg-bfcBorder transition flex items-center justify-center space-x-1">
+                <button onclick="openHallDetail('moravany')" class="w-full py-2.5 bg-bfcCardHover border border-bfcBorder text-white font-bold text-xs rounded-xl hover:bg-bfcBorder transition flex items-center justify-center space-x-1">
                     <span>Zobrazit kompletní info</span>
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
@@ -71,13 +67,11 @@
                         <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">Hřiště 3</p>
                         <p class="text-sm text-gray-300">Doplňková hrací hala pro mladší věkové kategorie.</p>
                     </div>
-                    <!-- Obrázek vpravo -->
                     <div class="w-full sm:w-32 h-28 rounded-xl bg-bfcCardHover border border-bfcBorder overflow-hidden flex-shrink-0 flex items-center justify-center">
                         <img src="Logo BFC.png" alt="SH Rosice" class="w-full h-full object-cover">
                     </div>
                 </div>
 
-                <!-- Doplňkové info -->
                 <div class="grid grid-cols-2 gap-3 pt-4 border-t border-bfcBorder text-xs text-gray-300">
                     <div><strong class="text-white block">Adresa:</strong> Zbýšovská 1135, Rosice</div>
                     <div><strong class="text-white block">Kapacita:</strong> 200 diváků</div>
@@ -85,8 +79,7 @@
                     <div><strong class="text-white block">Šatny:</strong> K dispozici 3 šatny</div>
                 </div>
 
-                <!-- Tlačítko pro detail -->
-                <button onclick="openHallDetail('SH Rosice')" class="w-full py-2.5 bg-bfcCardHover border border-bfcBorder text-white font-bold text-xs rounded-xl hover:bg-bfcBorder transition flex items-center justify-center space-x-1">
+                <button onclick="openHallDetail('rosice')" class="w-full py-2.5 bg-bfcCardHover border border-bfcBorder text-white font-bold text-xs rounded-xl hover:bg-bfcBorder transition flex items-center justify-center space-x-1">
                     <span>Zobrazit kompletní info</span>
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
@@ -95,16 +88,15 @@
         </div>
     </main>
 
-    <!-- Modální okno pro detail haly (otevře se po kliknutí na tlačítko) -->
-    <div id="hall-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-bfcCard border border-bfcBorder rounded-3xl max-w-lg w-full p-6 md:p-8 space-y-4 relative shadow-2xl">
-            <button onclick="closeHallDetail()" class="absolute top-6 right-6 p-2 rounded-xl bg-bfcCardHover text-gray-400 hover:text-white transition">
+    <!-- Velké modální okno pro detail haly -->
+    <div id="hall-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-bfcCard border border-bfcBorder rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 space-y-6 relative shadow-2xl my-8">
+            <button onclick="closeHallDetail()" class="sticky top-0 float-right p-2.5 rounded-xl bg-bfcCardHover text-gray-400 hover:text-white transition z-10">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-            <h2 id="modal-title" class="text-2xl font-black text-white">Název haly</h2>
-            <div id="modal-body" class="text-sm text-gray-300 space-y-3">
-                <!-- Sem se doplní podrobnější text, pravidla haly, parkování atd. -->
-                <p>Zde budou podrobné informace o vybrané hale, pokyny pro parkování, rozvrh šaten a další užitečné detaily pro týmy a fanoušky.</p>
+            
+            <div id="modal-content" class="space-y-6 clear-both">
+                <!-- Dynamicky se naplní podle vybrané haly -->
             </div>
         </div>
     </div>
@@ -112,13 +104,82 @@
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
     
     <script>
-        function openHallDetail(hallName) {
-            document.getElementById('modal-title').textContent = hallName;
+        // Databáze informací pro detailní okna
+        const hallData = {
+            moravany: {
+                title: "SH Moravany u Brna (Hřiště 1 & 2)",
+                address: "Sportovní 1, 664 48 Moravany",
+                capacity: "300 sedících diváků",
+                parking: "Velké parkoviště přímo před halou zdarma pro účastníky turnaje.",
+                bar: "Hlavní turnajový bar s teplým i studeným občerstvením, kávou a iontovými nápoji.",
+                rules: "Přísný zákaz vstupu v botách s černou podrážkou. Povinná sálová obuv.",
+                desc: "Moderní sportovní hala s vysoce kvalitním povrchem, elektronickou časomírou a kompletním zázemím pro týmy i doprovod.",
+                images: ["Logo BFC.png", "Logo BFC.png", "Logo BFC.png"] // Zde si pak dáš reálné fotky haly
+            },
+            rosice: {
+                title: "SH Rosice (Hřiště 3)",
+                address: "Zbýšovská 1135, 665 01 Rosice",
+                capacity: "200 diváků",
+                parking: "Parkování u zimního stadionu a v okolních ulicích.",
+                bar: "Bufet s rychlým občerstvením a nápoji.",
+                rules: "Vstup do hlediště pouze v přezůvkách nebo návlecích.",
+                desc: "Skvěle vybavená hala pro mládežnické kategorie s výbornou atmosférou a blízkým zázemím.",
+                images: ["Logo BFC.png", "Logo BFC.png"]
+            }
+        };
+
+        function openHallDetail(hallKey) {
+            const hall = hallData[hallKey];
+            if(!hall) return;
+
+            let html = `
+                <div class="space-y-2">
+                    <h2 class="text-2xl font-black text-white">${hall.title}</h2>
+                    <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">${hall.address}</p>
+                </div>
+                
+                <p class="text-sm text-gray-300 leading-relaxed">${hall.desc}</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-bfcDark p-4 rounded-xl border border-bfcBorder space-y-1">
+                        <span class="text-xs font-bold text-gray-400 uppercase">Kapacita</span>
+                        <p class="text-sm font-bold text-white">${hall.capacity}</p>
+                    </div>
+                    <div class="bg-bfcDark p-4 rounded-xl border border-bfcBorder space-y-1">
+                        <span class="text-xs font-bold text-gray-400 uppercase">Parkování</span>
+                        <p class="text-sm font-bold text-white">${hall.parking}</p>
+                    </div>
+                    <div class="bg-bfcDark p-4 rounded-xl border border-bfcBorder space-y-1">
+                        <span class="text-xs font-bold text-gray-400 uppercase">Občerstvení / Bar</span>
+                        <p class="text-sm font-bold text-white">${hall.bar}</p>
+                    </div>
+                    <div class="bg-bfcDark p-4 rounded-xl border border-bfcBorder space-y-1">
+                        <span class="text-xs font-bold text-gray-400 uppercase">Pravidla haly</span>
+                        <p class="text-sm font-bold text-white">${hall.rules}</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3 pt-4 border-t border-bfcBorder">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">Fotogalerie haly</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        ${hall.images.map(img => `
+                            <div class="h-28 rounded-xl bg-bfcDark border border-bfcBorder overflow-hidden flex items-center justify-center">
+                                <img src="${img}" alt="Foto haly" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modal-content').innerHTML = html;
             document.getElementById('hall-modal').classList.remove('hidden');
+            lucide.createIcons();
         }
+
         function closeHallDetail() {
             document.getElementById('hall-modal').classList.add('hidden');
         }
+
         lucide.createIcons();
     </script>
 </body>
