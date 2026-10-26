@@ -10,6 +10,20 @@
         tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
 </head>
 <body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
@@ -51,7 +65,8 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-8">
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-12">
+        
         <!-- Banner s obrázkem na pozadí -->
         <div class="relative overflow-hidden border border-bfcBorder rounded-3xl p-8 md:p-12 space-y-6 bg-cover bg-center" style="background-image: linear-gradient(to right, rgba(28, 30, 34, 0.95), rgba(28, 30, 34, 0.6)), url('images/bfc.png');">
             <span class="px-3 py-1 rounded-full bg-bfcRed/10 border border-bfcRed/30 text-bfcRed text-xs font-bold uppercase relative z-10">Vítejte na oficiálním webu BFC 🏑</span>
@@ -62,6 +77,122 @@
                 <a href="admin/registrace.html" class="px-6 py-3 rounded-xl bg-bfcCard/80 backdrop-blur border border-bfcBorder font-bold text-white hover:bg-bfcBorder transition">Registrovat tým</a>
             </div>
         </div>
+
+        <!-- POHYBLIVÉ LOGA PŘIHLÁŠENÝCH KLUBŮ -->
+        <div class="bg-bfcCard border border-bfcBorder p-6 rounded-3xl space-y-6 overflow-hidden">
+            <div class="flex items-center space-x-3 text-bfcRed">
+                <i data-lucide="users" class="w-6 h-6"></i>
+                <h2 class="text-xl font-black text-white">Přihlášené kluby</h2>
+            </div>
+            
+            <!-- Kontejner pro plynulý posuv log -->
+            <div class="relative w-full overflow-hidden py-2">
+                <div class="animate-marquee flex items-center space-x-12">
+                    <!-- Sada log 1 -->
+                    <a href="https://www.hattrickbrno.cz" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="Hattrick Brno" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="FBC Dragons" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="SH Rosice" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="Bulldogs Brno" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="Troopers" class="h-12 w-auto object-contain">
+                    </a>
+
+                    <!-- Sada log 2 (pro plynulou smyčku) -->
+                    <a href="https://www.hattrickbrno.cz" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="Hattrick Brno" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="FBC Dragons" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="SH Rosice" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="Bulldogs Brno" class="h-12 w-auto object-contain">
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 grayscale hover:grayscale-0 transition duration-300">
+                        <img src="images/BFC-Logo.png" alt="Troopers" class="h-12 w-auto object-contain">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ČASTO KLADENÉ DOTAZY (FAQ / PORADNA) -->
+        <div class="bg-bfcCard border border-bfcBorder p-6 md:p-8 rounded-3xl space-y-6">
+            <div class="flex items-center space-x-3 text-bfcRed border-b border-bfcBorder pb-4">
+                <i data-lucide="help-circle" class="w-6 h-6"></i>
+                <h2 class="text-xl font-black text-white">Často kladené dotazy (Poradna)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-bfcDark p-5 rounded-2xl border border-bfcBorder space-y-2">
+                    <h3 class="font-bold text-white flex items-center gap-2">
+                        <span class="text-bfcRed">Q:</span> Jak přihlásit svůj tým na turnaj?
+                    </h3>
+                    <p class="text-gray-300 text-xs leading-relaxed">
+                        Tým můžete zaregistrovat přes sekci <a href="admin/registrace.html" class="text-bfcRed hover:underline">Registrovat tým</a>. Po vyplnění údajů obdržíte pokyny k platbě startovného.
+                    </p>
+                </div>
+
+                <div class="bg-bfcDark p-5 rounded-2xl border border-bfcBorder space-y-2">
+                    <h3 class="font-bold text-white flex items-center gap-2">
+                        <span class="text-bfcRed">Q:</span> Kolik zápasů má každý tým garantováno?
+                    </h3>
+                    <p class="text-gray-300 text-xs leading-relaxed">
+                        V závislosti na zvolené kategorii má každý tým garanci minimálně 5 odehraných utkání v moderních brněnských halách.
+                    </p>
+                </div>
+
+                <div class="bg-bfcDark p-5 rounded-2xl border border-bfcBorder space-y-2">
+                    <h3 class="font-bold text-white flex items-center gap-2">
+                        <span class="text-bfcRed">Q:</span> Kde najdu aktuální rozpis zápasů?
+                    </h3>
+                    <p class="text-gray-300 text-xs leading-relaxed">
+                        Kompletní rozlosování, průběžné tabulky a výsledky naleznete v záložce <a href="rozpisy.html" class="text-bfcRed hover:underline">Rozpisy</a> a <a href="statistiky.html" class="text-bfcRed hover:underline">Statistiky</a>.
+                    </p>
+                </div>
+
+                <div class="bg-bfcDark p-5 rounded-2xl border border-bfcBorder space-y-2">
+                    <h3 class="font-bold text-white flex items-center gap-2">
+                        <span class="text-bfcRed">Q:</span> Jaké jsou požadavky na vybavení?
+                    </h3>
+                    <p class="text-gray-300 text-xs leading-relaxed">
+                        Všichni hráči musí mít povinnou sálovou obuv se světlou (nezanechávající) podrážkou a schválenou florbalovou výstroj dle pravidel ČF.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOCIÁLNÍ SÍTĚ -->
+        <div class="bg-bfcCard border border-bfcBorder p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start space-x-3 text-bfcRed">
+                    <i data-lucide="share-2" class="w-6 h-6"></i>
+                    <h2 class="text-xl font-black text-white">Sledujte dění z hal na sítích</h2>
+                </div>
+                <p class="text-gray-300 text-sm">Nenechte si ujít fotky, příběhy a aktuální výsledky přímo z hrací plochy.</p>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-bfcDark border border-bfcBorder text-white font-bold text-xs uppercase tracking-wider hover:border-bfcRed hover:text-bfcRed transition flex items-center space-x-2">
+                    <i data-lucide="instagram" class="w-4 h-4 text-bfcRed"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-bfcDark border border-bfcBorder text-white font-bold text-xs uppercase tracking-wider hover:border-bfcRed hover:text-bfcRed transition flex items-center space-x-2">
+                    <i data-lucide="facebook" class="w-4 h-4 text-bfcRed"></i>
+                    <span>Facebook</span>
+                </a>
+            </div>
+        </div>
+
     </main>
 
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
