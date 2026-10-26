@@ -59,11 +59,11 @@
                 <div class="bg-bfcCard border border-bfcBorder p-4 rounded-2xl space-y-3 sticky top-28">
                     <div class="flex items-center space-x-2 text-bfcRed pb-2 border-b border-bfcBorder">
                         <i data-lucide="layout-grid" class="w-5 h-5"></i>
-                        <h3 class="font-bold text-white text-sm uppercase tracking-wider">Vyberte kategorii</h3>
+                        <h3 class="font-bold text-white text-sm uppercase tracking-wider">Sekce propozic</h3>
                     </div>
                     <div id="category-menu" class="space-y-1.5 text-sm font-medium">
-                        <button onclick="switchCategory('Info')" class="w-full text-left px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition cat-btn" data-cat="Info">Základní info</button>
-                        <button onclick="switchCategory('muzi')" class="w-full text-left px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition cat-btn" data-cat="muzi">Muži / Elite 3+1</button>
+                        <button onclick="switchCategory('info')" class="w-full text-left px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition cat-btn" data-cat="info">Základní info</button>
+                        <button onclick="switchCategory('muzi')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn" data-cat="muzi">Muži / Elite 3+1</button>
                         <button onclick="switchCategory('zeny')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn" data-cat="zeny">Ženy</button>
                         <button onclick="switchCategory('juniori')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn" data-cat="juniori">Junioři / Dorost</button>
                     </div>
@@ -73,15 +73,15 @@
             <!-- PRAVÝ SLOUPEC: Hlavní obsah propozic -->
             <div class="lg:col-span-3 space-y-6">
                 
-                <!-- Horní lišta vybrané kategorie + Registrovat -->
+                <!-- Horní lišta vybrané sekce + Registrovat -->
                 <div class="bg-bfcCard border border-bfcBorder p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 rounded-xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center text-bfcRed">
                             <i data-lucide="trophy" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <span class="text-xs text-gray-400 font-bold uppercase">Zobrazená kategorie</span>
-                            <h2 id="cat-title" class="text-lg font-black text-white">Muži / Elite 3+1</h2>
+                            <span class="text-xs text-gray-400 font-bold uppercase">Zobrazená sekce</span>
+                            <h2 id="cat-title" class="text-lg font-black text-white">Základní info</h2>
                         </div>
                     </div>
                     <a href="admin/registrace.html" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-bfcRed text-white font-bold text-xs uppercase tracking-wider hover:bg-red-700 transition shadow-lg text-center">
@@ -93,38 +93,30 @@
                 <div class="bg-bfcCard border border-bfcBorder p-6 md:p-8 rounded-3xl space-y-6">
                     <div class="flex items-center space-x-3 text-bfcRed border-b border-bfcBorder pb-4">
                         <i data-lucide="info" class="w-6 h-6"></i>
-                        <h3 class="text-xl font-black text-white">Základní informace</h3>
+                        <h3 class="text-xl font-black text-white">Všeobecná ustanovení</h3>
                     </div>
 
                     <p id="cat-desc" class="text-gray-300 text-sm leading-relaxed">
-                        Brno Florball Cup v kategorii Muži/Elite je špičkový turnaj, který se odehrává v moderně vybavených sportovních halách v Brně (<a href="haly.html" class="text-bfcRed hover:underline">SH Moravany, SH Tuřany</a>). Naším cílem bylo rozetřít základní půldenní koncept turnaje a navýšit počet zápasů tak, aby hráč získal co největší herní vyžití. 
+                        Vítejte na oficiálních propozicích turnaje <strong>Brno Florball Cup (BFC)</strong>. Turnaj je určen pro všechny florbalové nadšence, registrované i neregistrované hráče, kteří si chtějí užít skvělý víkend plný sportu v moderních brněnských halách (<a href="haly.html" class="text-bfcRed hover:underline">SH Moravany, SH Tuřany</a>). Níže naleznete veškeré podrobnosti k jednotlivým kategoriím.
                     </p>
 
                     <!-- Bloky vedle sebe (2x2 grid) -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                         <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
                             <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
-                            <span class="text-gray-200 font-medium">Garance minimálně 5 odehraných zápasů</span>
+                            <span class="text-gray-200 font-medium">Kvalitní zázemí a online výsledky</span>
                         </div>
                         <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
                             <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
-                            <span class="text-gray-200 font-medium">Dvě kategorie: Výkonnostní a standardní</span>
+                            <span class="text-gray-200 font-medium">Profesionální rozhodčí ČF</span>
                         </div>
                         <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
                             <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
-                            <span class="text-gray-200 font-medium">Velikost hřiště: dle pravidel 3+1</span>
+                            <span class="text-gray-200 font-medium">Zdravotní služba po celou dobu akce</span>
                         </div>
                         <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
                             <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
-                            <span class="text-gray-200 font-medium">Skupiny a následný play-off pavouk</span>
-                        </div>
-                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
-                            <span class="text-gray-200 font-medium">Čas v základní části: 2x10 min. hrubého</span>
-                        </div>
-                        <div class="bg-bfcDark p-3.5 rounded-xl border border-bfcBorder flex items-center space-x-3">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-bfcRed flex-shrink-0"></i>
-                            <span class="text-gray-200 font-medium">Čas v play-off: 2x10 min. čistého</span>
+                            <span class="text-gray-200 font-medium">Bogoté ceny pro nejlepší týmy</span>
                         </div>
                     </div>
 
@@ -133,7 +125,7 @@
                         <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
                             <i data-lucide="map-pin" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
                             <span class="block text-[10px] text-gray-400 uppercase font-bold">Místo</span>
-                            <span class="text-xs font-bold text-white">SH Moravany</span>
+                            <span class="text-xs font-bold text-white">Brno a okolí</span>
                         </div>
                         <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
                             <i data-lucide="calendar" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
@@ -142,18 +134,18 @@
                         </div>
                         <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
                             <i data-lucide="shield" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
-                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Rozhodčí</span>
-                            <span class="text-xs font-bold text-white">Delegovaní ČF</span>
+                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Pravidla</span>
+                            <span class="text-xs font-bold text-white">Dle ČF</span>
                         </div>
                         <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder">
                             <i data-lucide="users" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
-                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Počet týmů</span>
-                            <span id="cat-teams" class="text-xs font-bold text-white">Max. 16</span>
+                            <span class="block text-[10px] text-gray-400 uppercase font-bold">Kategorie</span>
+                            <span id="cat-teams" class="text-xs font-bold text-white">Muži, Ženy, Junioři</span>
                         </div>
                         <div class="bg-bfcDark p-3 rounded-xl border border-bfcBorder col-span-2 sm:col-span-1">
                             <i data-lucide="credit-card" class="w-5 h-5 mx-auto text-bfcRed mb-1"></i>
                             <span class="block text-[10px] text-gray-400 uppercase font-bold">Startovné</span>
-                            <span id="cat-price" class="text-xs font-bold text-white">3 500 Kč</span>
+                            <span id="cat-price" class="text-xs font-bold text-white">Dle kategorie</span>
                         </div>
                     </div>
                 </div>
@@ -170,7 +162,7 @@
                         <div class="bg-bfcDark p-5 rounded-2xl border border-bfcBorder space-y-3">
                             <h4 class="font-bold text-white text-xs uppercase tracking-wider text-bfcRed">Základní skupiny</h4>
                             <p class="text-gray-300 text-xs leading-relaxed">
-                                Skupiny po 4 týmech. Každý tým odehraje tři utkání dle rozlosované tabulky. Hřiště 3+1. Čas v základní části: 2x10 hrubého. Čas v play-off: 2x10 čistého.
+                                Skupiny po 4 až 5 týmech dle celkového počtu přihlášených v dané kategorii. Každý tým má garantovaný vysoký počet odehraných zápasů.
                             </p>
                         </div>
                         <!-- Box B -->
@@ -180,7 +172,7 @@
                                 <li>• <strong>Výhra:</strong> 3 body</li>
                                 <li>• <strong>Remíza:</strong> 1 bod</li>
                                 <li>• <strong>Prohra:</strong> 0 bodů</li>
-                                <li class="pt-2">• Po základní části postupují týmy do <strong>play-off A</strong> nebo <strong>play-off B</strong> na základě umístění v tabulce.</li>
+                                <li class="pt-2">• Následný play-off pavouk pro nejlepší týmy ze skupin.</li>
                             </ul>
                         </div>
                     </div>
@@ -196,15 +188,11 @@
                     <ul class="text-gray-300 text-xs space-y-3 leading-relaxed">
                         <li class="flex items-start space-x-2">
                             <span class="text-bfcRed font-bold">•</span>
-                            <span><strong>Startovné:</strong> Jsme nastavili jako kombinaci poplatku za tým a za jednotlivého hráče, aby náklady co nejlépe odpovídaly skutečnému počtu účastníků. Díky tomu je cena spravedlivě rozdělena mezi menší i větší týmy.</span>
+                            <span><strong>Startovné:</strong> Je nutné uhradit nejpozději do 25. 8. 2026 na bankovní účet pořadatele. Pokyny k platbě obdrží kapitán po registraci.</span>
                         </li>
                         <li class="flex items-start space-x-2">
                             <span class="text-bfcRed font-bold">•</span>
-                            <span><strong>Pořadatel se vyhrazuje právo</strong> na změnu propozic a případné zrušení akce při nízké účasti týmů. Garance zápasů je platná při plném obsazení turnaje.</span>
-                        </li>
-                        <li class="flex items-start space-x-2">
-                            <span class="text-bfcRed font-bold">•</span>
-                            <span><strong>Uzávěrka přihlášek</strong> je do 15. 8. 2026. Startovné musí být zaplaceno do 25. 8. 2026.</span>
+                            <span><strong>Protesty:</strong> Případné protesty se podávají písemně hlavnímu rozhodčímu turnaje do 15 minut po skončení utkání spolu s poplatkem 500 Kč.</span>
                         </li>
                     </ul>
                 </div>
@@ -223,11 +211,11 @@
         }
 
         const categoryData = {
-            Info: {
+            info: {
                 title: "Základní info",
-                desc: "Brno Florball Cup v kategorii Muži/Elite je špičkový turnaj, který se odehrává v moderně vybavených sportovních halách v Brně (<a href='haly.html' class='text-bfcRed hover:underline'>SH Moravany, SH Tuřany</a>). Naším cílem bylo rozetřít základní půldenní koncept turnaje a navýšit počet zápasů tak, aby hráč získal co největší herní vyžití.",
-                teams: "Max. 16",
-                price: "3 500 Kč"
+                desc: "Vítejte na oficiálních propozicích turnaje <strong>Brno Florball Cup (BFC)</strong>. Turnaj je určen pro všechny florbalové nadšence, registrované i neregistrované hráče, kteří si chtějí užít skvělý víkend plný sportu v moderních brněnských halách (<a href='haly.html' class='text-bfcRed hover:underline'>SH Moravany, SH Tuřany</a>). Níže naleznete veškeré podrobnosti k jednotlivým kategoriím.",
+                teams: "Muži, Ženy, Junioři",
+                price: "Dle kategorie"
             },
             muzi: {
                 title: "Muži / Elite 3+1",
