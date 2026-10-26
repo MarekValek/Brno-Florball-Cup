@@ -62,6 +62,7 @@
                         <h3 class="font-bold text-white text-sm uppercase tracking-wider">Vyberte kategorii</h3>
                     </div>
                     <div id="category-menu" class="space-y-1.5 text-sm font-medium">
+                        <button onclick="switchCategory('Info')" class="w-full text-left px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition cat-btn" data-cat="Info">Základní info</button>
                         <button onclick="switchCategory('muzi')" class="w-full text-left px-3.5 py-2.5 rounded-xl bg-bfcRed text-white shadow-md transition cat-btn" data-cat="muzi">Muži / Elite 3+1</button>
                         <button onclick="switchCategory('zeny')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn" data-cat="zeny">Ženy</button>
                         <button onclick="switchCategory('juniori')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-bfcDark hover:text-white transition cat-btn" data-cat="juniori">Junioři / Dorost</button>
@@ -222,6 +223,12 @@
         }
 
         const categoryData = {
+            Info: {
+                title: "Základní info",
+                desc: "Brno Florball Cup v kategorii Muži/Elite je špičkový turnaj, který se odehrává v moderně vybavených sportovních halách v Brně (<a href='haly.html' class='text-bfcRed hover:underline'>SH Moravany, SH Tuřany</a>). Naším cílem bylo rozetřít základní půldenní koncept turnaje a navýšit počet zápasů tak, aby hráč získal co největší herní vyžití.",
+                teams: "Max. 16",
+                price: "3 500 Kč"
+            },
             muzi: {
                 title: "Muži / Elite 3+1",
                 desc: "Brno Florball Cup v kategorii Muži/Elite je špičkový turnaj, který se odehrává v moderně vybavených sportovních halách v Brně (<a href='haly.html' class='text-bfcRed hover:underline'>SH Moravany, SH Tuřany</a>). Naším cílem bylo rozetřít základní půldenní koncept turnaje a navýšit počet zápasů tak, aby hráč získal co největší herní vyžití.",
