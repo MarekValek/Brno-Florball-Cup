@@ -28,7 +28,8 @@ Brno Florball Cup (BFC)
     Registrace týmu a potvrzení příchodu
     Nájezdy po konci - dal/nedal, náhlá smrt
   -------
-  + trenér (profil trenéra, viditelnost svého týmu)
+- trenér - trenér.html
+(profil trenéra, viditelnost svého týmu)
 - Admin - admin.html
 Multiscoreboard) + Nastavení online
 Viditelnost databáze pořadatelských profilů, trenérů a týmů 
