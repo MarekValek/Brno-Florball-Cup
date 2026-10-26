@@ -32,16 +32,17 @@
     </header>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-8">
-        <div class="bg-gradient-to-r from-bfcCard to-bfcBorder border border-bfcBorder rounded-3xl p-8 md:p-12 space-y-6">
-            <span class="px-3 py-1 rounded-full bg-bfcRed/10 border border-bfcRed/30 text-bfcRed text-xs font-bold uppercase">Oficiální turnajový portál</span>
-            <h1 class="text-4xl md:text-6xl font-black text-white">BRNO FLORBALL <span class="text-bfcRed">CUP</span></h1>
-            <p class="text-gray-400 max-w-2xl">Vítejte v centrálním systému BFC. Všechny moduly jsou oddělené, takže v případě úprav pracujete vždy jen s konkrétním souborem.</p>
-            <div class="flex flex-wrap gap-4">
-                <a href="poradatel/zapis.html" class="px-6 py-3 rounded-xl bg-bfcRed text-white font-bold hover:bg-red-700 transition">Otevřít zápis o utkání</a>
-                <a href="admin/admin.html" class="px-6 py-3 rounded-xl bg-bfcCardHover border border-bfcBorder font-bold hover:bg-bfcBorder transition">Admin Multiscoreboard</a>
-            </div>
+    <!-- Banner s obrázkem na pozadí -->
+    <div class="relative overflow-hidden border border-bfcBorder rounded-3xl p-8 md:p-12 space-y-6 bg-cover bg-center" style="background-image: linear-gradient(to right, rgba(28, 30, 34, 0.95), rgba(28, 30, 34, 0.6)), url('images/shmoravany.png');">
+        <span class="px-3 py-1 rounded-full bg-bfcRed/10 border border-bfcRed/30 text-bfcRed text-xs font-bold uppercase relative z-10">Oficiální turnajový portál</span>
+        <h1 class="text-4xl md:text-6xl font-black text-white relative z-10">BRNO FLORBALL <span class="text-bfcRed">CUP</span></h1>
+        <p class="text-gray-300 max-w-2xl relative z-10">Vítejte v centrálním systému BFC. Všechny moduly jsou oddělené, takže v případě úprav pracujete vždy jen s konkrétním souborem.</p>
+        <div class="flex flex-wrap gap-4 relative z-10">
+            <a href="poradatel/zapis.html" class="px-6 py-3 rounded-xl bg-bfcRed text-white font-bold hover:bg-red-700 transition shadow-lg">Otevřít zápis o utkání</a>
+            <a href="admin/admin.html" class="px-6 py-3 rounded-xl bg-bfcCard/80 backdrop-blur border border-bfcBorder font-bold text-white hover:bg-bfcBorder transition">Admin Multiscoreboard</a>
         </div>
-    </main>
+    </div>
+</main>
 
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
     <script>lucide.createIcons();</script>
