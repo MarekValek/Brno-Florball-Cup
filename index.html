@@ -11,18 +11,16 @@
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-            display: flex;
-            width: max-content;
-            animation: marquee 25s linear infinite;
-        }
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
+    @keyframes marqueeBFC {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-33.333%); } /* Posun o přesně jednu třetinu (jednu celou sadu) */
+    }
+    .animate-marquee {
+         animation: marqueeBFC 25s linear infinite;
+     }
+     .animate-marquee:hover {
+         animation-play-state: paused;
+     }
     </style>
 </head>
 <body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
