@@ -49,21 +49,83 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-6">
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-8">
         <div>
             <h1 class="text-3xl font-black text-white">Propozice a pravidla turnaje</h1>
-            <p class="text-gray-400 text-sm">Důležité informace a pravidla pro všechny účastníky.</p>
+            <p class="text-gray-400 text-sm">Oficiální propozice, termíny a podmínky účasti na Brno Florball Cup.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3">
-                <h3 class="text-lg font-bold text-bfcRed">Hrací systém</h3>
-                <p class="text-gray-300">Turnaj se hraje dle platných pravidel Českého florbalu. Hrubý čas utkání je specifikován pro každou kategorii zvlášť v rozpisu.</p>
+        <!-- Hlavní grid propozic -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
+            
+            <!-- Karta 1: Termín a místo -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
+                <div class="flex items-center space-x-3 text-bfcRed">
+                    <i data-lucide="calendar" class="w-6 h-6"></i>
+                    <h3 class="text-lg font-bold text-white">Termín a místo</h3>
+                </div>
+                <p class="text-gray-300 leading-relaxed">
+                    Turnaj se koná v průběhu víkendu v moderně vybavených sportovních halách v Brně a okolí (<a href="haly.html" class="text-bfcRed hover:underline">SH Moravany, SH Tuřany, SH Rosice</a>).
+                </p>
             </div>
-            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3">
-                <h3 class="text-lg font-bold text-bfcRed">Registrace týmů & Příchod</h3>
-                <p class="text-gray-300">Zástupce týmu (trenér) je povinen potvrdit příchod a zkontrolovat soupisku u stolku pořadatelů minimálně 30 minut před svým prvním zápasem.</p>
+
+            <!-- Karta 2: Kategorie -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
+                <div class="flex items-center space-x-3 text-bfcRed">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                    <h3 class="text-lg font-bold text-white">Hrací kategorie</h3>
+                </div>
+                <ul class="text-gray-300 space-y-1.5">
+                    <li>• <strong>Muži / Elite</strong> (otevřená kategorie)</li>
+                    <li>• <strong>Ženy</strong></li>
+                    <li>• <strong>Junioři / Dorost</strong> (mládežnické kategorie)</li>
+                </ul>
             </div>
+
+            <!-- Karta 3: Startovné -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
+                <div class="flex items-center space-x-3 text-bfcRed">
+                    <i data-lucide="credit-card" class="w-6 h-6"></i>
+                    <h3 class="text-lg font-bold text-white">Startovné</h3>
+                </div>
+                <p class="text-gray-300 leading-relaxed">
+                    Výše startovného se odvíjí od přihlášeného týmu a termínu úhrady. Zahrnuje zajištění rozhodčích, online časomíry, zdravotní služby a ceny pro vítěze.
+                </p>
+            </div>
+
+            <!-- Karta 4: Hrací systém -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
+                <div class="flex items-center space-x-3 text-bfcRed">
+                    <i data-lucide="trophy" class="w-6 h-6"></i>
+                    <h3 class="text-lg font-bold text-white">Hrací systém</h3>
+                </div>
+                <p class="text-gray-300 leading-relaxed">
+                    Hraje se dle platných pravidel Českého florbalu. Základní skupiny a následný play-off pavouk. Garantovaný minimální počet zápasů pro každý tým.
+                </p>
+            </div>
+
+            <!-- Karta 5: Registrace a soupiska -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
+                <div class="flex items-center space-x-3 text-bfcRed">
+                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                    <h3 class="text-lg font-bold text-white">Registrace týmů</h3>
+                </div>
+                <p class="text-gray-300 leading-relaxed">
+                    Zástupce týmu (trenér/kapitán) je povinen potvrdit příchod a zkontrolovat soupisku u stolku pořadatelů minimálně 30 minut před prvním zápasem.
+                </p>
+            </div>
+
+            <!-- Karta 6: Pravidla a chování -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-2xl space-y-3 hover:border-bfcRed/40 transition">
+                <div class="flex items-center space-x-3 text-bfcRed">
+                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                    <h3 class="text-lg font-bold text-white">Pravidla a fair play</h3>
+                </div>
+                <p class="text-gray-300 leading-relaxed">
+                    Všichni účastníci jsou povinni dodržovat řád hracích hal (zejména povinnou sálovou obuv bez černé podrážky) a duch fair play.
+                </p>
+            </div>
+
         </div>
     </main>
 
