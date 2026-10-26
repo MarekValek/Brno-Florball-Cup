@@ -20,7 +20,7 @@
                 <span class="text-xl font-black text-white">BRNO FLORBALL <span class="text-bfcRed inline-block transition transform duration-300 hover:-rotate-12">CUP</span></span>
             </a>
 
-            <!-- Menu pro počítače -->
+            <!-- Menu pro počítače (schované na mobilech díky hidden md:flex) -->
             <nav class="hidden md:flex space-x-2 text-sm font-semibold">
                 <a href="index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní strana</a>
                 <a href="propozice.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Propozice</a>
@@ -32,7 +32,7 @@
                 <a href="admin/admin.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Admin</a>
             </nav>
 
-            <!-- Tlačítko hamburger menu pro mobily -->
+            <!-- Tlačítko hamburger menu pro mobily (viditelné jen na mobilech díky md:hidden) -->
             <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-bfcCard border border-bfcRed/40 text-white hover:bg-bfcRed/20 hover:border-bfcRed group transition duration-300">
                 <i data-lucide="menu" class="w-6 h-6 text-bfcRed group-hover:rotate-90 transition duration-300"></i>
             </button>
@@ -72,7 +72,8 @@
                         <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">Hřiště 1 a Hřiště 2</p>
                         <p class="text-sm text-gray-300">Hlavní centrální hala turnaje s plným zázemím pro týmy a online časomírou.</p>
                     </div>
-                    <div class="w-full h-48 rounded-xl bg-bfcDark border border-bfcBorder overflow-hidden">
+                    <!-- Upravená výška obrázku pro mobily (h-36 místo h-48) -->
+                    <div class="w-full h-36 md:h-48 rounded-xl bg-bfcDark border border-bfcBorder overflow-hidden">
                         <img src="images/SHMoravany/shmoravany.png" alt="SH Moravany" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -103,7 +104,8 @@
                         <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">Hřiště 1 a Hřiště 2</p>
                         <p class="text-sm text-gray-300">Hlavní centrální hala turnaje s plným zázemím pro týmy a online časomírou.</p>
                     </div>
-                    <div class="w-full h-48 rounded-xl bg-bfcDark border border-bfcBorder overflow-hidden">
+                    <!-- Upravená výška obrázku pro mobily (h-36 místo h-48) -->
+                    <div class="w-full h-36 md:h-48 rounded-xl bg-bfcDark border border-bfcBorder overflow-hidden">
                         <img src="images/SHTurany/shturany.png" alt="SH Tuřany" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -129,7 +131,8 @@
                         <p class="text-xs text-bfcRed font-bold uppercase tracking-wider">Hřiště 3</p>
                         <p class="text-sm text-gray-300">Doplňková hrací hala pro mladší věkové kategorie.</p>
                     </div>
-                    <div class="w-full h-48 rounded-xl bg-bfcDark border border-bfcBorder overflow-hidden">
+                    <!-- Upravená výška obrázku pro mobily (h-36 místo h-48) -->
+                    <div class="w-full h-36 md:h-48 rounded-xl bg-bfcDark border border-bfcBorder overflow-hidden">
                         <img src="images/BFC-Logo.png" alt="SH Rosice" class="w-full h-full object-cover">
                     </div>
                 </div>
