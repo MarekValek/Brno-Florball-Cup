@@ -6,8 +6,9 @@ Brno Florball Cup (BFC)
 - Haly - haly.html
 - Rozpisy - rozpisy.html
 - Statistiky - statistiky.html
-- Kontakt - kontakt.html
 - Tým - tým.html (všechny pořadatelské profily)
+- Kontakt - kontakt.html
+ platební údaje
 - Pořadatel - pořadatel.html (vlastní profil a ovládání výsledků + hl Pořadatel admin věci)
   - poradatel.html
     - profil.html
