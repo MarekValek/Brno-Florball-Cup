@@ -1,1 +1,26 @@
+const bulldogsData = {
+    "bulldogs-muzi": {
+        name: "Bulldogs Brno A",
+        club: "Bulldogs Brno",
+        category: "Muži / Elite 3+1",
+        coach: "Jan Novák",
+        logo: "images/Tymy/bulldogs.png",
+        players: [
+            { number: 1, name: "Tomáš Veselý", position: "Brankář" },
+            { number: 10, name: "Lukáš Dvořák", position: "Útočník" },
+            { number: 88, name: "Martin Kučera", position: "Obránce" }
+        ]
+    },
+    "bulldogs-juniori": {
+        name: "Bulldogs Brno U19",
+        club: "Bulldogs Brno",
+        category: "Junioři / Dorost",
+        coach: "Karel Procházka",
+        logo: "images/Tymy/bulldogs.png",
+        players: [
+            { number: 12, name: "David Černý", position: "Útočník" },
+            { number: 22, name: "Matěj Beneš", position: "Obránce" }
+        ]
+    }
+};
 
