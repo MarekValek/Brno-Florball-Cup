@@ -31,7 +31,7 @@ Brno Florball Cup (BFC)
     Nájezdy po konci - dal/nedal, náhlá smrt
   -------
 - trenér - trenér.html
-(profil trenéra, viditelnost svého týmu)
+(přihlášení na profil trenéra, viditelnost svého týmu)
 - Admin - admin.html
 Multiscoreboard) + Nastavení online
 Viditelnost databáze pořadatelských profilů, trenérů a týmů 
