@@ -2,7 +2,7 @@ window.bulldogsData = {
     "bulldogs-muzi": {
         name: "Buldogs Brno A",
         club: "Bulldogs Brno",
-        category: "Muži / Elite 3+1",
+        category: "Muži",
         coach: "Jan Novák",
         logo: "images/Tymy/bulldogs.png",
         players: [
