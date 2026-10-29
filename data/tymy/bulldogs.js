@@ -6,7 +6,7 @@ window.bulldogsData = {
         coach: "Jan Novák",
         logo: "images/Tymy/bulldogs.png",
         players: [
-            { number: 1, name: "Tomáš Veselý", position: "Brankář" },
+            { number: 1, name: "Tomáš Veselý", position: "Brankář", role: "C" },
             { number: 10, name: "Lukáš Dvořák", position: "Útočník" },
             { number: 88, name: "Martin Kučera", position: "Obránce" }
         ]
