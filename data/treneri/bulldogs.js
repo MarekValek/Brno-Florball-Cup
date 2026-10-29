@@ -1,4 +1,4 @@
-const treneriDatabase = [
+window.bulldogsTreneri = [
     {
         email: "poradatel@bfc.cz",
         password: "heslo123", // V reálu by tu bylo heslo, pro testování stačí takto
