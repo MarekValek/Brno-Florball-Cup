@@ -79,7 +79,7 @@
 
     <script>
         // 2. Sloučení databází ze všech klubových souborů do jednoho objektu
- všechnyTymy = {
+        const vsechnyTymy = {
             ...(window.bulldogsData || {}),
             ...(window.rosiceData || {}) // sem pak dopíšeš další kluby
         };
@@ -155,7 +155,7 @@
                 });
 
                 container.innerHTML += `
-                    space-y-4">
+                    <div class="space-y-4">
                         <div class="border-b border-bfcBorder pb-2 flex items-center justify-between">
                             <h2 class="text-xl font-black uppercase tracking-wider text-white">${kategorie}</h2>
                             <span class="text-xs font-bold text-gray-400 bg-bfcCard px-3 py-1 rounded-full border border-bfcBorder">${týmy.length} týmů</span>
