@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pořadatel - Profil | BFC</title>
+    <title>Profil trenéra - BFC Brno Florball Cup</title>
+    <link rel="icon" type="image/png" href="../images/BFC/BFC-Logo2.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
@@ -11,44 +12,153 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+    <!-- Hlavička -->
     <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <a href="../index.html" class="text-xl font-black text-white">BFC <span class="text-bfcRed">Pořadatel</span></a>
-            <nav class="space-x-2 text-sm font-semibold">
-                <a href="profil.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>
-                <a href="zapis.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Zápis o utkání</a>
-                <a href="../index.html" class="px-3 py-2 text-gray-400">Hlavní web</a>
+            <a href="../index.html" class="flex items-center space-x-3">
+                <img src="../images/BFC/profil.png" alt="profil" class="w-10 h-10 rounded-xl object-cover">
+                <span class="text-xl font-black text-white">BFC <span class="text-bfcRed">Pořadatel</span></span>
+            </a>
+            <nav class="hidden md:flex space-x-2 text-sm font-semibold">
+                <a href="../index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
+                <a href="profil.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>     
+                <button onclick="logout()" class="px-3 py-2 text-red-400 hover:bg-bfcCard rounded-lg cursor-pointer">Odhlásit se</button>
             </nav>
+            <!-- Tlačítko hamburger menu pro mobily -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-bfcCard border border-bfcRed/40 text-white hover:bg-bfcRed/20 hover:border-bfcRed group transition duration-300">
+                <i data-lucide="menu" class="w-6 h-6 text-bfcRed group-hover:rotate-90 transition duration-300"></i>
+            </button>
+        </div>
+        
+        <!-- Rozbalovací mobilní menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-bfcCard border-b border-bfcBorder space-y-2 text-sm font-semibold">
+            <a href="../index.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní strana</a>
+            <a href="profil.html" class="block px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full space-y-6">
-        <div class="bg-bfcCard border border-bfcBorder rounded-2xl p-6 md:p-8 max-w-xl space-y-4">
-            <h1 class="text-2xl font-black text-white">Profil pořadatele (Pořadatel 1)</h1>
-            <div class="space-y-3 text-sm">
-                <div>
-                    <label class="block text-xs font-bold text-gray-400">Jméno a Příjmení</label>
-                    <input type="text" value="Marek Váleček" class="w-full mt-1 bg-bfcDark border border-bfcBorder rounded-xl px-4 py-2.5 text-white">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-400">Pozice</label>
-                    <input type="text" value="Hlavní rozhodčí / Časoměřič" class="w-full mt-1 bg-bfcDark border border-bfcBorder rounded-xl px-4 py-2.5 text-white">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-400">Číslo účtu</label>
-                    <input type="text" value="123456789/0300" class="w-full mt-1 bg-bfcDark border border-bfcBorder rounded-xl px-4 py-2.5 text-white">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-400">Velikost trička</label>
-                    <select class="w-full mt-1 bg-bfcDark border border-bfcBorder rounded-xl px-4 py-2.5 text-white">
-                        <option>S</option><option>M</option><option selected>L</option><option>XL</option><option>XXL</option>
-                    </select>
-                </div>
-                <button onclick="alert('Profil úspěšně uložen!')" class="w-full py-3 bg-bfcRed text-white font-bold rounded-xl hover:bg-red-700 transition">Uložit profil</button>
+    <!-- Hlavní obsah -->
+    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow w-full">
+        
+        <!-- Hlavička profilu -->
+        <div class="bg-bfcCard border border-gray-800 rounded-2xl p-6 mb-8 flex items-center space-x-5 shadow-xl">
+            <!-- Profilovka -->
+            <div class="w-16 h-16 rounded-2xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center overflow-hidden flex-shrink-0">
+                <img id="poradatel-avatar" src="" alt="Profilovka" class="w-full h-full object-cover hidden">
+                <span id="poradatel-fallback" class="text-bfcRed text-2xl font-black">👤</span>
+            </div>
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-bfcRed bg-bfcRed/10 px-2.5 py-1 rounded-full">Správa pořadatele</span>
+                <h1 id="profil-title" class="text-2xl font-black text-white mt-1">Profil pořadatele</h1>
+                <p id="profil-email" class="text-sm text-gray-400">Načítám e-mail...</p>
             </div>
         </div>
+
+        <!-- Formulář s údaji -->
+        <div class="bg-bfcCard border border-gray-800 rounded-2xl p-6 shadow-xl">
+            <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-gray-800">
+                <i data-lucide="settings" class="text-bfcRed w-5 h-5"></i>
+                <h2 class="text-lg font-bold">Údaje pořadatele</h2>
+            </div>
+
+            <form onsubmit="saveProfile(event)" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Jméno a Příjmení</label>
+                    <input type="text" id="input-jmeno" class="w-full bg-bfcDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-bfcRed transition" required>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Pozice</label>
+                    <input type="text" id="input-pozice" class="w-full bg-bfcDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-bfcRed transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Číslo účtu</label>
+                    <input type="text" id="input-ucet" class="w-full bg-bfcDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-bfcRed transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Velikost trička</label>
+                    <select id="input-tricko" class="w-full bg-bfcDark border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-bfcRed transition">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-bfcRed hover:bg-red-700 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-bfcRed/20">
+                    Uložit změny
+                </button>
+            </form>
+        </div>
+
     </main>
-    <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
-    <script>lucide.createIcons();</script>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 py-6 text-center text-xs text-gray-500">
+        Brno Florball Cup &copy; 2026 Všechna práva vyhrazena.
+    </footer>
+
+    <!-- Připojení databáze pořadatelů -->
+    <script src="../data/poradatele/poradatele.js"></script>
+
+    <script>
+        // 1. Zjistíme, jestli je pořadatel přihlášený
+        const aktivniPoradatelJson = localStorage.getItem('aktivni_poradatel');
+
+        if (!aktivniPoradatelJson) {
+            // Pokud není přihlášený, přesměrujeme ho na přihlášení
+            window.location.href = "poradatel.html";
+        } else {
+            const poradatel = JSON.parse(aktivniPoradatelJson);
+
+            // 2. Vyplnění údajů do elementů a formuláře
+            document.getElementById('profil-title').innerText = poradatel.jmeno;
+            document.getElementById('profil-email').innerText = poradatel.email;
+            document.getElementById('nav-username').innerText = poradatel.jmeno;
+
+            document.getElementById('input-jmeno').value = poradatel.jmeno || '';
+            document.getElementById('input-pozice').value = poradatel.pozice || '';
+            document.getElementById('input-ucet').value = poradatel.cisloUctu || '';
+            document.getElementById('input-tricko').value = poradatel.velikostTricka || 'L';
+
+            // 3. Načtení profilovky
+            const avatarImg = document.getElementById('poradatel-avatar');
+            const fallbackIcon = document.getElementById('poradatel-fallback');
+            
+            if (poradatel.foto) {
+                avatarImg.src = `../${poradatel.foto}`;
+                avatarImg.classList.remove('hidden');
+                fallbackIcon.classList.add('hidden');
+            }
+        }
+
+        // Ukázková funkce pro uložení změn (uloží do lokální session)
+        function saveProfile(event) {
+            event.preventDefault();
+            
+            const aktualni = JSON.parse(localStorage.getItem('aktivni_poradatel')) || {};
+            
+            aktualni.jmeno = document.getElementById('input-jmeno').value;
+            aktualni.pozice = document.getElementById('input-pozice').value;
+            aktualni.cisloUctu = document.getElementById('input-ucet').value;
+            aktualni.velikostTricka = document.getElementById('input-tricko').value;
+
+            localStorage.setItem('aktivni_poradatel', JSON.stringify(aktualni));
+            
+            alert('Změny byly úspěšně uloženy!');
+            location.reload();
+        }
+
+        // Funkce pro odhlášení
+        function logout() {
+            localStorage.removeItem('aktivni_poradatel');
+            window.location.href = "poradatel.html";
+        }
+
+        lucide.createIcons();
+    </script>
 </body>
 </html>
