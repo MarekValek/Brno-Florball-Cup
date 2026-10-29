@@ -8,7 +8,7 @@ window.bulldogsTreneri = [
     {
         email: "bulldogs1@bfc.cz",
         password: "heslo123",
-        jmeno: "Eva Marešová",
+        jmeno: "Karel Procházka",
         teamId: "bulldogs-juniori"
     }
 ];
