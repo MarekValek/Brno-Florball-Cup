@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil trenéra - BFC Brno Florball Cup</title>
+    <link rel="icon" type="image/png" href="../images/BFC/BFC-Logo2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+    <!-- Hlavička -->
+    <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center font-black text-bfcRed">BFC</div>
+                <span class="text-xl font-black text-white">BFC <span class="text-bfcRed">Trenér</span></span>
+            </a>
+            <nav class="hidden md:flex space-x-2 text-sm font-semibold">
+                <a href="profil.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>
+                <a href="../index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
+                <button onclick="logout()" class="px-3 py-2 text-red-400 hover:bg-bfcCard rounded-lg">Odhlásit se</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hlavní obsah -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-8">
+        
+        <!-- Uvítací karta trenéra -->
+        <div class="bg-bfcCard border border-bfcBorder p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-bfcRed to-transparent"></div>
+            
+            <div class="flex items-center space-x-5 text-center md:text-left flex-col md:flex-row">
+                <div class="w-16 h-16 rounded-2xl bg-bfcRed/10 border border-bfcRed/30 flex items-center justify-center text-bfcRed text-2xl font-black">
+                    👨‍🏫
+                </div>
+                <div class="space-y-1">
+                    <span class="px-3 py-1 rounded-full bg-bfcRed/10 border border-bfcRed/30 text-bfcRed text-xs font-bold uppercase">Správa týmu</span>
+                    <h1 id="coach-name" class="text-2xl md:text-3xl font-black text-white">Načítání profilu...</h1>
+                    <p id="coach-email" class="text-sm text-gray-400">-</p>
+                </div>
+            </div>
+
+            <div class="bg-bfcDark border border-bfcBorder p-4 rounded-2xl text-center min-w-[180px]">
+                <span class="block text-[10px] text-gray-400 uppercase font-bold">Přihlášený tým</span>
+                <span id="coach-team-name" class="text-sm font-bold text-white">-</span>
+            </div>
+        </div>
+
+        <!-- Sekce přiřazeného týmu a soupisky -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Levý sloupec: Údaje / Nastavení -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-3xl space-y-4 md:col-span-1">
+                <div class="flex items-center space-x-2 text-bfcRed pb-2 border-b border-bfcBorder">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <h2 class="font-bold text-white text-sm uppercase tracking-wider">Údaje trenéra</h2>
+                </div>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase">Jméno</label>
+                        <input type="text" id="input-jmeno" class="w-full mt-1 bg-bfcDark border border-bfcBorder rounded-xl px-4 py-2.5 text-white text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase">E-mail</label>
+                        <input type="email" id="input-email" disabled class="w-full mt-1 bg-bfcDark/50 border border-bfcBorder rounded-xl px-4 py-2.5 text-gray-400 text-sm cursor-not-allowed">
+                    </div>
+                    <button onclick="alert('Změny byly uloženy!')" class="w-full py-3 bg-bfcRed text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-red-700 transition shadow-lg">
+                        Uložit změny
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pravý sloupec: Soupiska týmu -->
+            <div class="bg-bfcCard border border-bfcBorder p-6 rounded-3xl space-y-6 md:col-span-2">
+                <div class="flex items-center justify-between border-b border-bfcBorder pb-4">
+                    <div class="flex items-center space-x-3 text-bfcRed">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                        <h2 class="text-xl font-black text-white">Soupiska svěřenců</h2>
+                    </div>
+                    <span id="team-category-badge" class="text-xs font-bold px-3 py-1 bg-bfcDark border border-bfcBorder rounded-lg text-gray-300">-</span>
+                </div>
+
+                <!-- Tabulka hráčů -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-bfcBorder text-xs text-gray-400 uppercase font-bold">
+                                <th class="py-3 px-3">Číslo</th>
+                                <th class="py-3 px-3">Jméno hráče</th>
+                                <th class="py-3 px-3">Pozice</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coach-players-list" class="divide-y divide-bfcBorder text-sm text-gray-300">
+                            <!-- Sem se natahují hráči z databázových JS souborů -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tlačítko pro detail veřejné stránky týmu -->
+                <div class="pt-2">
+                    <a id="public-team-link" href="#" class="inline-flex items-center space-x-2 text-xs font-bold text-gray-300 hover:text-white bg-bfcDark border border-bfcBorder px-4 py-2.5 rounded-xl transition">
+                        <span>Zobrazit veřejnou stránku týmu</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-bfcRed"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Patička -->
+    <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
+
+    <!-- Připojení databází klubů (uprav cesty podle umístění souboru) -->
+    <script src="../data/bulldogs.js"></script>
+    <script src="../data/rosice.js"></script>
+
+    <script>
+        // 1. Zjistíme, který trenér je přihlášený (uloženo v localStorage při přihlášení)
+        const aktivniTrenerJson = localStorage.getItem('aktivni_trener');
+
+        if (!aktivniTrenerJson) {
+            // Pokud nikdo přihlášený není, pošleme ho zpět na přihlášení
+            window.location.href = "../trener.html"; // Uprav cestu podle tvého souboru přihlášení
+        } else {
+            const trener = JSON.parse(aktivniTrenerJson);
+
+            // Vyplníme základní údaje trenéra
+            document.getElementById('coach-name').innerText = trener.jmeno;
+            document.getElementById('coach-email').innerText = trener.email;
+            document.getElementById('input-jmeno').value = trener.jmeno;
+            document.getElementById('input-email').value = trener.email;
+
+            // 2. Spojíme databáze klubů, abychom našli jeho tým
+            const allTeams = {
+                ...window.bulldogsData,
+                ...window.rosiceData
+            };
+
+            const mujTym = allTeams[trener.teamId];
+
+            if (mujTym) {
+                document.getElementById('coach-team-name').innerText = mujTym.name;
+                document.getElementById('team-category-badge').innerText = mujTym.category;
+                document.getElementById('public-team-link').href = `../tym.html?id=${trener.teamId}`;
+
+                // Vykreslení hráčů do tabulky
+                const tbody = document.getElementById('coach-players-list');
+                if (mujTym.players && mujTym.players.length > 0) {
+                    mujTym.players.forEach(p => {
+                        tbody.innerHTML += `
+                            <tr class="hover:bg-bfcDark/50 transition">
+                                <td class="py-3 px-3 font-black text-bfcRed">#${p.number}</td>
+                                <td class="py-3 px-3 font-semibold text-white">${p.name}</td>
+                                <td class="py-3 px-3 text-gray-400">${p.position}</td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    tbody.innerHTML = `<tr><td colspan="3" class="py-4 text-center text-gray-500">Zatím nejsou přidáni žádní hráči.</td></tr>`;
+                }
+            } else {
+                document.getElementById('coach-team-name').innerText = "Nepřiřazen";
+            }
+        }
+
+        // Funkce pro odhlášení
+        function logout() {
+            localStorage.removeItem('aktivni_trener');
+            window.location.href = "../trener.html";
+        }
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>
