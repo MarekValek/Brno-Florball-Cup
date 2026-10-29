@@ -14,7 +14,7 @@
 <body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-3">
+            <a href="../index.html" class="flex items-center space-x-3">
                 <img src="../images/BFC/trener.png" alt="trener" class="w-10 h-10 rounded-xl object-cover">
                 <span class="text-xl font-black text-white">BFC <span class="text-bfcRed">Trenér</span></span>
             </a>
@@ -25,9 +25,9 @@
                 <a href="../haly.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Haly</a>
                 <a href="../rozpisy.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Rozpisy</a>
                 <a href="../statistiky.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Statistiky</a>
-                <a href="../kontakt.html"class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Kontakt</a>
+                <a href="../kontakt.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Kontakt</a>
                 <a href="trener.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Trenér</a>
-                <a href="../poradatel/poradatel.html"class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Pořadatel</a>
+                <a href="../poradatel/poradatel.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Pořadatel</a>
                 <a href="../admin/admin.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Admin</a>
             </nav>
 
@@ -54,8 +54,6 @@
     <!-- Hlavní obsah - Přihlašovací karta -->
     <main class="flex-grow flex items-center justify-center px-4 py-12">
         <div class="bg-bfcCard border border-bfcBorder rounded-3xl p-8 md:p-10 max-w-md w-full space-y-6 shadow-2xl relative overflow-hidden">
-            
-            <!-- Jemný červený horní okraj card -->
             <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-bfcRed to-transparent"></div>
 
             <div class="text-center space-y-2">
@@ -70,7 +68,7 @@
             <form onsubmit="handleLogin(event)" class="space-y-4">
                 <div class="space-y-1">
                     <label class="text-xs font-bold text-gray-300 uppercase">E-mail</label>
-                    <input type="email" required placeholder="poradatel@bfc.cz" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
+                    <input type="email" id="login-email" required placeholder="poradatel@bfc.cz" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
                 </div>
 
                 <div class="space-y-1">
@@ -78,7 +76,7 @@
                         <label class="text-xs font-bold text-gray-300 uppercase">Heslo</label>
                         <a href="#" class="text-xs text-bfcRed hover:underline">Zapomenuté heslo?</a>
                     </div>
-                    <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
+                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
                 </div>
 
                 <button type="submit" class="w-full py-3.5 bg-bfcRed text-white font-bold text-sm rounded-xl hover:bg-red-700 transition shadow-lg shadow-bfcRed/20 flex items-center justify-center space-x-2">
@@ -96,20 +94,33 @@
     <!-- Patička -->
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
 
+    <!-- Připojení databáze trenérů -->
+    <script src="../data/treneri/bulldogs.js"></script>
+
     <script>
         function handleLogin(event) {
             event.preventDefault();
-            // Po úspěšném přihlášení přesměrujeme uživatele na jeho profil
-            window.location.href = "profil.html";
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Ověření v databázi trenérů
+            const trener = treneriDatabase.find(t => t.email === email && t.password === password);
+
+            if (trener) {
+                // Uložíme do paměti a jdeme na profil ve stejné složce
+                localStorage.setItem('aktivni_trener', JSON.stringify(trener));
+                window.location.href = "profil.html";
+            } else {
+                alert("Nesprávný e-mail nebo heslo!");
+            }
         }
-        lucide.createIcons();
-    </script>
-    
-    <script>
+
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
+
         lucide.createIcons();
     </script>
 </body>
