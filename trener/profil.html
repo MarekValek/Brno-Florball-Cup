@@ -151,9 +151,19 @@
                 document.getElementById('team-category-badge').innerText = mujTym.category;
                 document.getElementById('public-team-link').href = `../tym.html?id=${trener.teamId}`;
 
+                // Načtení loga týmu do hlavičky profilu
+                const logoImg = document.getElementById('coach-team-logo');
+                const fallbackIcon = document.getElementById('coach-team-fallback');
+                if (mujTym.logo) {
+                    logoImg.src = `../${mujTym.logo}`;
+                    logoImg.classList.remove('hidden');
+                    fallbackIcon.classList.add('hidden');
+                }
+
                 // Vykreslení hráčů do tabulky
                 const tbody = document.getElementById('coach-players-list');
                 if (mujTym.players && mujTym.players.length > 0) {
+                    tbody.innerHTML = ""; // Vyčistíme případný starý obsah
                     mujTym.players.forEach(p => {
                         tbody.innerHTML += `
                             <tr class="hover:bg-bfcDark/50 transition">
@@ -174,7 +184,7 @@
         // Funkce pro odhlášení
         function logout() {
             localStorage.removeItem('aktivni_trener');
-            window.location.href = "../trener/trener.html";
+            window.location.href = "trener.html";
         }
 
         lucide.createIcons();
