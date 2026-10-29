@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seznam týmů - Brno Florball Cup</title>
+    <link rel="icon" type="image/png" href="images/BFC/BFC-Logo2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+    <!-- Hlavička -->
+    <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="images/BFC/profil.png" alt="profil" class="w-10 h-10 rounded-xl object-cover">
+                <span class="text-xl font-black text-white">BFC <span class="text-bfcRed">Týmy</span></span>
+            </a>
+            <nav class="hidden md:flex space-x-2 text-sm font-semibold">
+                <a href="index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní strana</a>
+                <a href="tymy.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Týmy</a>
+                <a href="bfc-tym.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Tým pořadatelů</a>
+            </nav>
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-bfcCard border border-bfcRed/40 text-white hover:bg-bfcRed/20 hover:border-bfcRed group transition duration-300">
+                <i data-lucide="menu" class="w-6 h-6 text-bfcRed group-hover:rotate-90 transition duration-300"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-bfcCard border-b border-bfcBorder space-y-2 text-sm font-semibold">
+            <a href="index.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní strana</a>
+            <a href="tymy.html" class="block px-3 py-2 bg-bfcRed text-white rounded-lg">Týmy</a>
+            <a href="bfc-tym.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Tým pořadatelů</a>
+        </div>
+    </header>
 
+    <!-- Hlavní obsah -->
+    <main class="max-w-7xl mx-auto px-4 py-12 flex-grow w-full">
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-bfcRed bg-bfcRed/10 px-3 py-1 rounded-full">Účastníci turnaje</span>
+            <h1 class="text-3xl md:text-4xl font-black uppercase tracking-wider text-white">Seznam přihlášených týmů</h1>
+            <p class="text-sm text-gray-400">Prohlédněte si přehled všech týmů rozdělených podle kategorií a jejich soupisky.</p>
+        </div>
+
+        <!-- Kontejner, kam se dynamicky vygenerují týmy -->
+        <div id="tymy-container" class="space-y-10">
+            <!-- Sem se data vykreslí skriptem -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">
+        Brno Florball Cup &copy; 2026 Všechna práva vyhrazena.
+    </footer>
+
+    <!-- 1. Připojení databází jednotlivých klubů -->
+    <script src="data/tymy/bulldogs.js"></script>
+    <!-- Až přidáš další klub, dáš sem např: <script src="data/tymy/rosice.js"></script> -->
+
+    <script>
+        // 2. Sloučení databází ze všech klubových souborů do jednoho objektu
+ všechnyTymy = {
+            ...(window.bulldogsData || {}),
+            ...(window.rosiceData || {}) // sem pak dopíšeš další kluby
+        };
+
+        const container = document.getElementById('tymy-container');
+
+        if (Object.keys(vsechnyTymy).length > 0) {
+            container.innerHTML = "";
+
+            // Seskupení týmů podle kategorií
+            const kategorieMap = {};
+            Object.entries(vsechnyTymy).forEach(([id, tym]) => {
+                const kat = tym.category || "Ostatní";
+                if (!kategorieMap[kat]) kategorieMap[kat] = [];
+                kategorieMap[kat].push({ id, ...tym });
+            });
+
+            // Vykreslení kategorií a týmů v nich
+            Object.entries(kategorieMap).forEach(([kategorie, týmy]) => {
+                let kartyHtml = "";
+                
+                týmy.forEach(tym => {
+                    // Vykreslení hráčů s označením kapitána (C)
+                    let soupiskaHtml = "";
+                    if (tym.players && tym.players.length > 0) {
+                        tym.players.forEach(p => {
+                            const captainBadge = p.role === "C" 
+                                ? `<span class="ml-1.5 px-1.5 py-0.5 text-[9px] font-black bg-bfcRed text-white rounded">C</span>` 
+                                : '';
+                            soupiskaHtml += `
+                                <tr class="border-b border-bfcBorder/50 hover:bg-bfcDark/40">
+                                    <td class="py-2 px-2 font-black text-bfcRed">#${p.number}</td>
+                                    <td class="py-2 px-2 font-semibold text-white flex items-center">${p.name} ${captainBadge}</td>
+                                    <td class="py-2 px-2 text-gray-400 text-right">${p.position}</td>
+                                </tr>
+                            `;
+                        });
+                    } else {
+                        soupiskaHtml = `<tr><td colspan="3" class="py-4 text-center text-gray-500 text-xs">Zatím bez hráčů.</td></tr>`;
+                    }
+
+                    kartyHtml += `
+                        <div class="bg-bfcCard border border-bfcBorder rounded-2xl p-6 shadow-xl flex flex-col justify-between hover:border-bfcRed/40 transition duration-300">
+                            <div>
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <img src="${tym.logo}" alt="${tym.name}" class="w-14 h-14 rounded-xl object-cover bg-bfcDark border border-bfcBorder p-1 flex-shrink-0">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">${tym.club}</span>
+                                        <h3 class="text-xl font-black text-white">${tym.name}</h3>
+                                        <p class="text-xs text-bfcRed font-semibold mt-0.5">Trenér: ${tym.coach}</p>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-bfcBorder pt-4">
+                                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Soupiska</h4>
+                                    <div class="overflow-x-auto max-h-48 overflow-y-auto">
+                                        <table class="w-full text-xs">
+                                            <tbody>
+                                                ${soupiskaHtml}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-4 border-t border-bfcBorder">
+                                <a href="tym.html?id=${tym.id || ''}" class="w-full block text-center py-2.5 bg-bfcDark hover:bg-bfcRed text-white font-bold rounded-xl transition text-xs border border-bfcBorder hover:border-bfcRed">
+                                    Detail týmu &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML += `
+                    space-y-4">
+                        <div class="border-b border-bfcBorder pb-2 flex items-center justify-between">
+                            <h2 class="text-xl font-black uppercase tracking-wider text-white">${kategorie}</h2>
+                            <span class="text-xs font-bold text-gray-400 bg-bfcCard px-3 py-1 rounded-full border border-bfcBorder">${týmy.length} týmů</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${kartyHtml}
+                        </div>
+                    </div>
+                `;
+            });
+        } else {
+            container.innerHTML = `<div class="text-center py-12 text-gray-500">Zatím nejsou k dispozici žádné týmy.</div>`;
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>
