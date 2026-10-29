@@ -175,10 +175,17 @@
                 if (mujTym.players && mujTym.players.length > 0) {
                     tbody.innerHTML = ""; // Vyčistíme případný starý obsah
                     mujTym.players.forEach(p => {
+                        // Pokud je hráč kapitán (role: "C"), přidáme mu červený štítek
+                        const captainBadge = p.role === "C" 
+                            ? `<span class="ml-2 px-1.5 py-0.5 text-[10px] font-black bg-bfcRed text-white rounded shadow-sm">C</span>` 
+                            : '';
+
                         tbody.innerHTML += `
                             <tr class="hover:bg-bfcDark/50 transition">
                                 <td class="py-3 px-3 font-black text-bfcRed">#${p.number}</td>
-                                <td class="py-3 px-3 font-semibold text-white">${p.name}</td>
+                                <td class="py-3 px-3 font-semibold text-white flex items-center">
+                                    ${p.name} ${captainBadge}
+                                </td>
                                 <td class="py-3 px-3 text-gray-400">${p.position}</td>
                             </tr>
                         `;
