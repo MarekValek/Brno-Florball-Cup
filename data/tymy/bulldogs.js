@@ -1,6 +1,6 @@
-const bulldogsData = {
+window.bulldogsData = {
     "bulldogs-muzi": {
-        name: "Bulldogs Brno A",
+        name: "Buldogs Brno A",
         club: "Bulldogs Brno",
         category: "Muži / Elite 3+1",
         coach: "Jan Novák",
