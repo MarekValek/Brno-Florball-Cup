@@ -22,7 +22,7 @@
             <nav class="hidden md:flex space-x-2 text-sm font-semibold">
                 <a href="profil.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>
                 <a href="../index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
-                <button onclick="logout()" class="px-3 py-2 text-red-400 hover:bg-bfcCard rounded-lg">Odhlásit se</button>
+                <button onclick="logout()" class="px-3 py-2 text-red-400 hover:bg-bfcCard rounded-lg cursor-pointer">Odhlásit se</button>
             </nav>
         </div>
     </header>
@@ -69,7 +69,7 @@
                         <label class="block text-xs font-bold text-gray-400 uppercase">E-mail</label>
                         <input type="email" id="input-email" disabled class="w-full mt-1 bg-bfcDark/50 border border-bfcBorder rounded-xl px-4 py-2.5 text-gray-400 text-sm cursor-not-allowed">
                     </div>
-                    <button onclick="alert('Změny byly uloženy!')" class="w-full py-3 bg-bfcRed text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-red-700 transition shadow-lg">
+                    <button onclick="alert('Změny byly uloženy!')" class="w-full py-3 bg-bfcRed text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-red-700 transition shadow-lg cursor-pointer">
                         Uložit změny
                     </button>
                 </div>
@@ -116,17 +116,18 @@
     <!-- Patička -->
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
 
-    <!-- Připojení databází klubů (uprav cesty podle umístění souboru) -->
-    <script src="../data/bulldogs.js"></script>
+    <!-- Připojení databází klubů (správná cesta ven ze složky trener do kořene a do data/) -->
+    <script src="../data/tymy/bulldogs.js"></script>
     <script src="../data/rosice.js"></script>
+    <script src="../data/treneri/bulldogs.js"></script>
 
     <script>
         // 1. Zjistíme, který trenér je přihlášený (uloženo v localStorage při přihlášení)
         const aktivniTrenerJson = localStorage.getItem('aktivni_trener');
 
         if (!aktivniTrenerJson) {
-            // Pokud nikdo přihlášený není, pošleme ho zpět na přihlášení
-            window.location.href = "../trener.html"; // Uprav cestu podle tvého souboru přihlášení
+            // Pokud nikdo přihlášený není, pošleme ho zpět na přihlášení ve stejné složce
+            window.location.href = "trener.html";
         } else {
             const trener = JSON.parse(aktivniTrenerJson);
 
@@ -138,8 +139,8 @@
 
             // 2. Spojíme databáze klubů, abychom našli jeho tým
             const allTeams = {
-                ...window.bulldogsData,
-                ...window.rosiceData
+                ...(window.bulldogsData || {}),
+                ...(window.rosiceData || {})
             };
 
             const mujTym = allTeams[trener.teamId];
@@ -172,7 +173,7 @@
         // Funkce pro odhlášení
         function logout() {
             localStorage.removeItem('aktivni_trener');
-            window.location.href = "../trener.html";
+            window.location.href = "trener.html";
         }
 
         lucide.createIcons();
