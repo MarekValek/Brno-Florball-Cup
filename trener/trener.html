@@ -94,33 +94,39 @@
     <!-- Patička -->
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
 
-    <!-- Připojení databáze trenérů -->
+    <!-- Připojení databází trenérů jednotlivých klubů -->
     <script src="../data/treneri/bulldogs.js"></script>
+    <!-- Až přibydou další kluby, dáš sem třeba: <script src="../data/treneri/rosice.js"></script> -->
 
     <script>
         function handleLogin(event) {
             event.preventDefault();
-            
+        
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
 
-            // Ověření v databázi trenérů
-            const trener = treneriDatabase.find(t => t.email === email && t.password === password);
+            // Spojíme databáze trenérů ze všech klubů do jedné
+            const vsetciTreneri = [
+                ...(window.bulldogsTreneri || []),
+                ...(window.rosiceTreneri || []) // Sem pak můžeš postupně přidávat další kluby
+            ];
+
+            // Vyhledáme trenéra podle e-mailu a hesla
+            const trener = vsetciTreneri.find(t => t.email === email && t.password === password);
 
             if (trener) {
-                // Uložíme do paměti a jdeme na profil ve stejné složce
                 localStorage.setItem('aktivni_trener', JSON.stringify(trener));
                 window.location.href = "profil.html";
             } else {
                 alert("Nesprávný e-mail nebo heslo!");
             }
         }
-
+    </script>
+    <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
-
         lucide.createIcons();
     </script>
 </body>
