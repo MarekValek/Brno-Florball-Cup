@@ -41,11 +41,11 @@
             <a href="../index.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcDark rounded-lg">Hlavní strana</a>
             <a href="../propozice.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Propozice</a>
             <a href="../haly.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcDark rounded-lg">Haly</a>
-            <a href="../rozpisy.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcDark rounded-lg">Rozpisy</a>
-            <a href="../statistiky.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcDark rounded-lg">Statistiky</a>
-            <a href="../kontakt.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcDark rounded-lg">Kontakt</a>
+            <a href="../rozpisy.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Rozpisy</a>
+            <a href="../statistiky.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Statistiky</a>
+            <a href="../kontakt.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Kontakt</a>
             <a href="../poradatel/poradatel.html" class="block px-3 py-2 bg-bfcRed text-white rounded-lg">Pořadatel</a>
-            <a href="../admin/admin.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcDark rounded-lg">Admin</a>
+            <a href="../admin/admin.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Admin</a>
         </div>
     </header>
 
@@ -68,7 +68,7 @@
             <form onsubmit="handleLogin(event)" class="space-y-4">
                 <div class="space-y-1">
                     <label class="text-xs font-bold text-gray-300 uppercase">E-mail</label>
-                    <input type="email" required placeholder="poradatel@bfc.cz" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
+                    <input type="email" id="login-email" required placeholder="poradatel@bfc.cz" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
                 </div>
 
                 <div class="space-y-1">
@@ -76,7 +76,7 @@
                         <label class="text-xs font-bold text-gray-300 uppercase">Heslo</label>
                         <a href="#" class="text-xs text-bfcRed hover:underline">Zapomenuté heslo?</a>
                     </div>
-                    <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
+                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-sm focus:outline-none focus:border-bfcRed transition">
                 </div>
 
                 <button type="submit" class="w-full py-3.5 bg-bfcRed text-white font-bold text-sm rounded-xl hover:bg-red-700 transition shadow-lg shadow-bfcRed/20 flex items-center justify-center space-x-2">
@@ -94,20 +94,34 @@
     <!-- Patička -->
     <footer class="border-t border-bfcBorder py-6 text-center text-xs text-gray-500">&copy; 2026 Brno Florball Cup</footer>
 
+    <!-- Připojení databáze pořadatelů -->
+    <script src="../data/poradatele/poradatele.js"></script>
+
     <script>
         function handleLogin(event) {
             event.preventDefault();
-            // Po úspěšném přihlášení přesměrujeme uživatele na jeho profil
-            window.location.href = "profil.html";
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Vyhledání pořadatele v globální databázi
+            const poradatel = window.poradateleDatabase.find(p => p.email === email && p.password === password);
+
+            if (poradatel) {
+                // Uložení přihlášeného pořadatele do paměti prohlížeče
+                localStorage.setItem('aktivni_poradatel', JSON.stringify(poradatel));
+                // Úspěšné přesměrování na profil
+                window.location.href = "profil.html";
+            } else {
+                alert("Nesprávný e-mail nebo heslo!");
+            }
         }
-        lucide.createIcons();
-    </script>
-    
-    <script>
+
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
+
         lucide.createIcons();
     </script>
 </body>
