@@ -14,7 +14,7 @@ window.bulldogsData = {
     "bulldogs-juniori": {
         name: "Bulldogs Brno U19",
         club: "Bulldogs Brno",
-        category: "Junioři / Dorost",
+        category: "Junioři",
         coach: "Karel Procházka",
         logo: "images/Tymy/bulldogs.png",
         players: [
