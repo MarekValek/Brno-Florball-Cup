@@ -6,7 +6,8 @@ window.poradateleDatabase = [
         pozice: "Hlavní pořadatel",
         cisloUctu: "123456789/0300",
         velikostTricka: "L",
-        foto: "images/BFCTym/valek.png" // Cesta k fotce pořadatele
+        foto: "images/BFCTym/valek.png", // Cesta k fotce pořadatele
+        popis: "Hlavní organizátor turnaje, zodpovědný za celkový harmonogram a fungování hal."
     },
     {
         email: "rozhodci@bfc.cz",
@@ -15,6 +16,7 @@ window.poradateleDatabase = [
         pozice: "Časoměřič",
         cisloUctu: "987654321/0100",
         velikostTricka: "M",
-        foto: "images/Poradatele/jan.png" // Cesta k fotce pořadatele
+        foto: "images/Poradatele/jan.png", // Cesta k fotce pořadatele
+        popis: "Hlavní organizátor turnaje, zodpovědný za celkový harmonogram a fungování hal."
     }
 ];
