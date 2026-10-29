@@ -19,8 +19,7 @@
                 <img src="../images/BFC/profil.png" alt="profil" class="w-10 h-10 rounded-xl object-cover">
                 <span class="text-xl font-black text-white">BFC <span class="text-bfcRed">Pořadatel</span></span>
             </a>
-            <nav class="hidden md:flex items-center space-x-4 text-sm font-semibold">
-                <span id="nav-username" class="text-gray-300">Načítám...</span>
+            <nav class="hidden md:flex items-center space-x-2 text-sm font-semibold">
                 <a href="../index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
                 <a href="profil.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>     
                 <button onclick="logout()" class="px-3 py-2 text-red-400 hover:bg-bfcCard rounded-lg cursor-pointer">Odhlásit se</button>
@@ -119,9 +118,6 @@
             // 2. Vyplnění údajů do elementů a formuláře
             document.getElementById('profil-title').innerText = poradatel.jmeno;
             document.getElementById('profil-email').innerText = poradatel.email;
-            
-            const navUsername = document.getElementById('nav-username');
-            if (navUsername) navUsername.innerText = poradatel.jmeno;
 
             document.getElementById('input-jmeno').value = poradatel.jmeno || '';
             document.getElementById('input-pozice').value = poradatel.pozice || '';
