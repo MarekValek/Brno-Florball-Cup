@@ -19,7 +19,8 @@
                 <img src="../images/BFC/profil.png" alt="profil" class="w-10 h-10 rounded-xl object-cover">
                 <span class="text-xl font-black text-white">BFC <span class="text-bfcRed">Pořadatel</span></span>
             </a>
-            <nav class="hidden md:flex space-x-2 text-sm font-semibold">
+            <nav class="hidden md:flex items-center space-x-4 text-sm font-semibold">
+                <span id="nav-username" class="text-gray-300">Načítám...</span>
                 <a href="../index.html" class="px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní web</a>
                 <a href="profil.html" class="px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>     
                 <button onclick="logout()" class="px-3 py-2 text-red-400 hover:bg-bfcCard rounded-lg cursor-pointer">Odhlásit se</button>
@@ -34,6 +35,7 @@
         <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-bfcCard border-b border-bfcBorder space-y-2 text-sm font-semibold">
             <a href="../index.html" class="block px-3 py-2 text-gray-300 hover:bg-bfcCard rounded-lg">Hlavní strana</a>
             <a href="profil.html" class="block px-3 py-2 bg-bfcRed text-white rounded-lg">Můj profil</a>
+            <button onclick="logout()" class="w-full text-left block px-3 py-2 text-red-400 hover:bg-bfcCard rounded-lg">Odhlásit se</button>
         </div>
     </header>
 
@@ -117,7 +119,9 @@
             // 2. Vyplnění údajů do elementů a formuláře
             document.getElementById('profil-title').innerText = poradatel.jmeno;
             document.getElementById('profil-email').innerText = poradatel.email;
-            document.getElementById('nav-username').innerText = poradatel.jmeno;
+            
+            const navUsername = document.getElementById('nav-username');
+            if (navUsername) navUsername.innerText = poradatel.jmeno;
 
             document.getElementById('input-jmeno').value = poradatel.jmeno || '';
             document.getElementById('input-pozice').value = poradatel.pozice || '';
@@ -156,6 +160,11 @@
         function logout() {
             localStorage.removeItem('aktivni_poradatel');
             window.location.href = "poradatel.html";
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         }
 
         lucide.createIcons();
