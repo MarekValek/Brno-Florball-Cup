@@ -109,15 +109,18 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
 
+            // Načtení registrovaných trenérů z localStorage
+            const registrovaniTreneriStorage = JSON.parse(localStorage.getItem('bfc_registrovani_treneri')) || [];
+            
             // Spojíme databáze trenérů ze všech klubů do jedné
             const vsetciTreneri = [
                 ...(window.bulldogsTreneri || []),
-                ...(window.rosiceTreneri || []) // Sem pak můžeš postupně přidávat další kluby
+                ...(window.rosiceTreneri || []), // Sem pak můžeš postupně přidávat další kluby
+                ...registrovaniTreneriStorage
             ];
 
-            // Vyhledáme trenéra podle e-mailu a hesla
-            const trener = vsetciTreneri.find(t => t.email === email && t.password === password);
-
+            // Ověření při přihlášení
+            const trener = vsichniTreneri.find(t => t.email === email && t.password === password);
             if (trener) {
                 localStorage.setItem('aktivni_trener', JSON.stringify(trener));
                 window.location.href = "profil.html";
