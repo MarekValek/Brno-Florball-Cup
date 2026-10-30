@@ -16,7 +16,7 @@ window.poradateleDatabase = [
         pozice: "Zdravotník",
         cisloUctu: "987654321/0100",
         velikostTricka: "M",
-        foto: "images/Poradatele/novotna.png", // Cesta k fotce pořadatele
+        foto: "images/BFCTym/novotna.png", // Cesta k fotce pořadatele
         popis: "Naše nejlepší zdravotnice 🚑"
     }
 ];
