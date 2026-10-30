@@ -83,7 +83,7 @@
         // 2. Sloučení databází ze všech klubových souborů do jednoho objektu
         const vsechnyTymy = {
             ...(window.bulldogsData || {}),
-            ...(window.rosiceData || {}) // sem pak dopíšeš další kluby
+            ...(window.rosiceData || {}), // sem pak dopíšeš další kluby
             ...registrovaneZLocalStorage // <--- Tady se připojí týmy z registrace
         };
 
