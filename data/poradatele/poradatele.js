@@ -10,13 +10,13 @@ window.poradateleDatabase = [
         popis: "Hlavní organizátor turnaje, zodpovědný za celkový harmonogram a fungování hal."
     },
     {
-        email: "rozhodci@bfc.cz",
+        email: "novotna@bfc.cz",
         password: "heslo123",
-        jmeno: "Jan Novák",
-        pozice: "Časoměřič",
+        jmeno: "Veronika Novotná",
+        pozice: "Zdravotník",
         cisloUctu: "987654321/0100",
         velikostTricka: "M",
-        foto: "images/Poradatele/jan.png", // Cesta k fotce pořadatele
-        popis: "Hlavní organizátor turnaje, zodpovědný za celkový harmonogram a fungování hal."
+        foto: "images/Poradatele/novotna.png", // Cesta k fotce pořadatele
+        popis: "Naše nejlepší zdravotnice 🚑"
     }
 ];
