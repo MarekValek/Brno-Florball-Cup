@@ -21,6 +21,17 @@ window.bulldogsData = {
             { number: 12, name: "David Černý", position: "Útočník" },
             { number: 22, name: "Matěj Beneš", position: "Obránce" }
         ]
+    },
+    "bulldogs-dorostenci": {
+        name: "Bulldogs Brno U17",
+        club: "Bulldogs Brno",
+        category: "Dorostenci",
+        coach: "Jan Blažek",
+        logo: "images/Tymy/bulldogs.png",
+        players: [
+            { number: 12, name: "David Černý", position: "Útočník" },
+            { number: 22, name: "Matěj Beneš", position: "Obránce" }
+        ]
     }
 };
 
