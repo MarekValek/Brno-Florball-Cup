@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pořádání turnaje | Brno Florball Cup</title>
+    <link rel="icon" type="image/png" href="../images/BFC/BFC-Logo2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { bfcRed: '#E31B23', bfcDark: '#121316', bfcCard: '#1C1E22', bfcBorder: '#2E3238' } } } }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+
+    <!-- Horní lišta administrace turnaje -->
+    <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <a href="poradani.html" class="p-2 rounded-xl bg-bfcCard border border-bfcBorder hover:border-bfcRed transition text-gray-300 hover:text-white">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </a>
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-bfcRed bg-bfcRed/10 px-2.5 py-0.5 rounded-full">Pořádání turnaje</span>
+                <h1 id="turnaj-nazev" class="text-lg font-black text-white tracking-wider">Challenge Cup Mladší elévové</h1>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <button class="p-2.5 rounded-xl bg-bfcCard border border-bfcBorder text-gray-300 hover:text-white transition">
+                <i data-lucide="volume-2" class="w-5 h-5"></i>
+            </button>
+            <button class="px-4 py-2 bg-bfcCard border border-bfcBorder hover:border-bfcRed rounded-xl text-xs font-bold text-white transition flex items-center space-x-2">
+                <i data-lucide="edit-3" class="w-4 h-4 text-bfcRed"></i>
+                <span>Editor turnaje</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigační záložky (Zápasy, Ovládání hřišť, Statistiky...) -->
+    <div class="bg-bfcCard border-b border-bfcBorder px-6 py-3">
+        <div class="max-w-7xl mx-auto flex space-x-2 overflow-x-auto text-xs font-bold">
+            <button onclick="switchTab('zapasu')" id="btn-tab-zapasu" class="px-4 py-2.5 rounded-xl bg-bfcRed text-white flex items-center space-x-2 transition">
+                <i data-lucide="swords" class="w-4 h-4"></i>
+                <span>Zápasy</span>
+            </button>
+            <button onclick="switchTab('hristi')" id="btn-tab-hristi" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+                <i data-lucide="play-circle" class="w-4 h-4"></i>
+                <span>Ovládání hřišť</span>
+            </button>
+            <button onclick="switchTab('onlinel')" id="btn-tab-onlinel" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+                <i data-lucide="settings" class="w-4 h-4"></i>
+                <span>Nastavení online</span>
+            </button>
+            <button onclick="switchTab('pavouk')" id="btn-tab-pavouk" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+                <i data-lucide="git-branch" class="w-4 h-4"></i>
+                <span>Tabulka a pavouk</span>
+            </button>
+            <button onclick="switchTab('statistiky')" id="btn-tab-statistiky" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+                <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                <span>Statistiky</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hlavní obsah -->
+    <main class="max-w-7xl mx-auto px-6 py-8 flex-grow w-full space-y-6">
+
+        <!-- Záložka: Zápasy -->
+        <div id="tab-content-zapasu" class="space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-3 w-full md:w-auto">
+                    <h2 class="text-xl font-black uppercase tracking-wider">Seznam zápasů</h2>
+                    <span id="pocet-zapasu-badge" class="px-2.5 py-0.5 rounded-full bg-bfcCard border border-bfcBorder text-xs font-bold text-gray-400">0</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                    <input type="text" id="search-input" oninput="filterMatches()" placeholder="Hledat tým, skupinu, číslo..." class="px-4 py-2 bg-bfcCard border border-bfcBorder rounded-xl text-xs text-white focus:outline-none focus:border-bfcRed w-full md:w-64">
+                    <select id="hriste-select" onchange="filterMatches()" class="px-4 py-2 bg-bfcCard border border-bfcBorder rounded-xl text-xs text-white focus:outline-none focus:border-bfcRed">
+                        <option value="vsechna">Všechna hřiště</option>
+                        <option value="Hřiště 1">SH Moravany • Hřiště 1</option>
+                        <option value="Hřiště 2">SH Moravany • Hřiště 2</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Filtrovací tlačítka stavů -->
+            <div class="flex space-x-2 text-xs font-bold">
+                <button onclick="setFilter('vsechny')" id="filter-vsechny" class="px-4 py-2 rounded-xl bg-bfcRed text-white transition">Všechny</button>
+                <button onclick="setFilter('zive')" id="filter-zive" class="px-4 py-2 rounded-xl bg-bfcCard border border-bfcBorder text-gray-400 hover:text-white transition">Živě (0)</button>
+                <button onclick="setFilter('planovane')" id="filter-planovane" class="px-4 py-2 rounded-xl bg-bfcCard border border-bfcBorder text-gray-400 hover:text-white transition">Plánované</button>
+                <button onclick="setFilter('odehrane')" id="filter-odehrane" class="px-4 py-2 rounded-xl bg-bfcCard border border-bfcBorder text-gray-400 hover:text-white transition">Odehrané</button>
+            </div>
+
+            <!-- Grid karet zápasů -->
+            <div id="matches-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Generuje se dynamicky -->
+            </div>
+        </div>
+
+        <!-- Ostatní záložky (zatím placeholder) -->
+        <div id="tab-content-hristi" class="hidden text-center py-20 text-gray-500">Ovládání hřišť a časomíry se připravuje...</div>
+        <div id="tab-content-onlinel" class="hidden text-center py-20 text-gray-500">Nastavení online přenosů...</div>
+        <div id="tab-content-pavouk" class="hidden text-center py-20 text-gray-500">Turnajový pavouk a tabulky...</div>
+        <div id="tab-content-statistiky" class="hidden text-center py-20 text-gray-500">Statistiky střelců a týmů...</div>
+
+    </main>
+
+    <!-- Modální okno pro Správu zápasu -->
+    <div id="match-modal" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+        <div class="bg-bfcCard border border-bfcBorder rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-6 shadow-2xl relative">
+            <div class="flex justify-between items-center border-b border-bfcBorder pb-4">
+                <div>
+                    <span id="modal-zapas-info" class="text-xs font-bold text-bfcRed uppercase tracking-wider">#001 • Skupina A</span>
+                    <h3 class="text-xl font-black text-white mt-0.5">Správa zápasu</h3>
+                </div>
+                <button onclick="closeModal()" class="p-2 rounded-xl bg-bfcDark border border-bfcBorder text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4 items-center bg-bfcDark p-4 rounded-2xl border border-bfcBorder text-center">
+                    <div>
+                        <p id="modal-t1-name" class="text-xs font-bold text-gray-400 mb-2 truncate">Tým 1</p>
+                        <input type="number" id="modal-t1-score" class="w-20 mx-auto text-center py-2 bg-bfcCard border border-bfcBorder rounded-xl text-2xl font-black text-white focus:outline-none focus:border-bfcRed">
+                    </div>
+                    <div>
+                        <p id="modal-t2-name" class="text-xs font-bold text-gray-400 mb-2 truncate">Tým 2</p>
+                        <input type="number" id="modal-t2-score" class="w-20 mx-auto text-center py-2 bg-bfcCard border border-bfcBorder rounded-xl text-2xl font-black text-white focus:outline-none focus:border-bfcRed">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Stav zápasu</label>
+                    <select id="modal-status" class="w-full px-4 py-3 bg-bfcDark border border-bfcBorder rounded-xl text-white text-xs focus:outline-none focus:border-bfcRed">
+                        <option value="planovane">Plánované</option>
+                        <option value="zive">Živě</option>
+                        <option value="konec">Odehrané (Konec)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex space-x-3 pt-4 border-t border-bfcBorder">
+                <button onclick="closeModal()" class="w-1/2 py-3 bg-bfcDark border border-bfcBorder rounded-xl font-bold text-xs text-gray-300 hover:bg-bfcBorder transition">Zrušit</button>
+                <button onclick="saveMatchChanges()" class="w-1/2 py-3 bg-bfcRed rounded-xl font-bold text-xs text-white hover:bg-red-700 transition shadow-lg shadow-bfcRed/20">Uložit změny</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Výchozí zápasy pro turnaj (uložíme do localStorage, pokud tam ještě nejsou)
+        const defaultMatches = [
+            { id: 1, cislo: "#001", skupina: "Skupina A", cas: "09:00", t1: "TROOPERS Green", t2: "Bulldogs Brno Orange", skore1: 11, skore2: 1, hala: "SH Moravany • Hřiště 1", stav: "konec" },
+            { id: 2, cislo: "#002", skupina: "Skupina A", cas: "09:00", t1: "Florbal Rosice", t2: "FBŠ HATTRICK BRNO 2", skore1: 7, skore2: 5, hala: "SH Moravany • Hřiště 2", stav: "konec" },
+            { id: 3, cislo: "#003", skupina: "Skupina A", cas: "09:25", t1: "FBŠ HATTRICK BRNO 1", t2: "TROOPERS Black", skore1: 1, skore2: 6, hala: "SH Moravany • Hřiště 1", stav: "konec" },
+            { id: 4, cislo: "#004", skupina: "Skupina A", cas: "09:25", t1: "Bulldogs Brno Black", t2: "Florbal Židenice", skore1: 4, skore2: 4, hala: "SH Moravany • Hřiště 2", stav: "konec" }
+        ];
+
+        let activeFilter = 'vsechny';
+        let currentEditingId = null;
+
+        // Načtení zápasů z localStorage
+        function getMatches() {
+            let matches = JSON.parse(localStorage.getItem('bfc_turnaj_zapsy'));
+            if (!matches) {
+                matches = defaultMatches;
+                localStorage.setItem('bfc_turnaj_zapsy', JSON.stringify(matches));
+            }
+            return matches;
+        }
+
+        function renderMatches() {
+            const matches = getMatches();
+            const grid = document.getElementById('matches-grid');
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const selectedHriste = document.getElementById('hriste-select').value;
+
+            grid.innerHTML = "";
+            let filtered = matches.filter(m => {
+                const matchSearch = m.t1.toLowerCase().includes(searchTerm) || m.t2.toLowerCase().includes(searchTerm) || m.skupina.toLowerCase().includes(searchTerm) || m.cislo.toLowerCase().includes(searchTerm);
+                const matchHriste = selectedHriste === 'vsechna' || m.hala.includes(selectedHriste);
+                const matchStav = activeFilter === 'vsechny' || m.stav === activeFilter;
+                return matchSearch && matchHriste && matchStav;
+            });
+
+            document.getElementById('pocet-zapasu-badge.').innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-12 text-gray-500 text-xs">Žádné zápasy neodpovídají filtrům.</div>`;
+                return;
+            }
+
+            filtered.forEach(m => {
+                let statusBadge = m.stav === 'konec' 
+                    ? `<span class="px-2 py-0.5 bg-bfcDark border border-bfcBorder text-[10px] font-bold text-gray-400 rounded">KONEC</span>`
+                    : (m.stav === 'zive' ? `<span class="px-2 py-0.5 bg-bfcRed/20 text-bfcRed text-[10px] font-bold rounded animate-pulse">ŽIVĚ</span>` : `<span class="px-2 py-0.5 bg-bfcDark border border-bfcBorder text-[10px] font-bold text-gray-400 rounded">PLÁNOVÁNO</span>`);
+
+                grid.innerHTML += `
+                    <div class="bg-bfcCard border border-bfcBorder rounded-2xl p-5 shadow-xl flex flex-col justify-between hover:border-bfcRed/40 transition">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-bold text-gray-400">${m.cas} &nbsp;&bull;&nbsp; <span class="text-white">${m.cislo}</span> &nbsp;&bull;&nbsp; ${m.skupina}</span>
+                                ${statusBadge}
+                            </div>
+
+                            <div class="space-y-2 py-2 border-y border-bfcBorder/50">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-semibold text-white truncate max-w-[180px]">${m.t1}</span>
+                                    <span class="text-base font-black text-white px-3 py-1 bg-bfcDark border border-bfcBorder rounded-lg">${m.skore1}</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-semibold text-white truncate max-w-[180px]">${m.t2}</span>
+                                    <span class="text-base font-black text-white px-3 py-1 bg-bfcDark border border-bfcBorder rounded-lg">${m.skore2}</span>
+                                </div>
+                            </div>
+
+                            <p class="text-[11px] text-gray-400">${m.hala}</p>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-bfcBorder flex justify-between items-center">
+                            <button onclick="openModal(${m.id})" class="w-full py-2 bg-bfcDark hover:bg-bfcRed text-white font-bold rounded-xl transition text-xs border border-bfcBorder hover:border-bfcRed flex items-center justify-center space-x-1">
+                                <span>Spravovat zápas</span>
+                                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        function setFilter(filter) {
+            activeFilter = filter;
+            ['vsechny', 'zive', 'planovane', 'odehrane'].forEach(f => {
+                const btn = document.getElementById(`filter-${f}`);
+                if (f === filter) {
+                    btn.className = "px-4 py-2 rounded-xl bg-bfcRed text-white transition";
+                } else {
+                    btn.className = "px-4 py-2 rounded-xl bg-bfcCard border border-bfcBorder text-gray-400 hover:text-white transition";
+                }
+            });
+            renderMatches();
+        }
+
+        function filterMatches() {
+            renderMatches();
+        }
+
+        function openModal(id) {
+            currentEditingId = id;
+            const matches = getMatches();
+            const match = matches.find(m => m.id === id);
+            if (!match) return;
+
+            document.getElementById('modal-zapas-info').innerText = `${match.cislo} • ${match.skupina}`;
+            document.getElementById('modal-t1-name').innerText = match.t1;
+            document.getElementById('modal-t2-name').innerText = match.t2;
+            document.getElementById('modal-t1-score').value = match.skore1;
+            document.getElementById('modal-t2-score').value = match.skore2;
+            document.getElementById('modal-status').value = match.stav;
+
+            document.getElementById('match-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('match-modal').classList.add('hidden');
+            currentEditingId = null;
+        }
+
+        function saveMatchChanges() {
+            if (currentEditingId === null) return;
+            let matches = getMatches();
+            const index = matches.findIndex(m => m.id === currentEditingId);
+            if (index !== -1) {
+                matches[index].skore1 = parseInt(document.getElementById('modal-t1-score').value) || 0;
+                matches[index].skore2 = parseInt(document.getElementById('modal-t2-score').value) || 0;
+                matches[index].stav = document.getElementById('modal-status').value;
+
+                localStorage.setItem('bfc_turnaj_zapsy', JSON.stringify(matches));
+                closeModal();
+                renderMatches();
+            }
+        }
+
+        function switchTab(tab) {
+            ['zapasu', 'hristi', 'onlinel', 'pavouk', 'statistiky'].forEach(t => {
+                document.getElementById(`tab-content-${t}`).classList.add('hidden');
+                document.getElementById(`btn-tab-${t}`).className = "px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition";
+            });
+            document.getElementById(`tab-content-${tab}`).classList.remove('hidden');
+            document.getElementById(`btn-tab-${tab}`).className = "px-4 py-2.5 rounded-xl bg-bfcRed text-white flex items-center space-x-2 transition";
+        }
+
+        renderMatches();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
