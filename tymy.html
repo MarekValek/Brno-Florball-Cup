@@ -78,10 +78,13 @@
     <!-- Až přidáš další klub, dáš sem např: <script src="data/tymy/rosice.js"></script> -->
 
     <script>
+        // Načtení týmů ze statických souborů + z registrace v localStorage
+        const registrovaneZLocalStorage = JSON.parse(localStorage.getItem('bfc_registrovane_tymy')) || {};
         // 2. Sloučení databází ze všech klubových souborů do jednoho objektu
         const vsechnyTymy = {
             ...(window.bulldogsData || {}),
             ...(window.rosiceData || {}) // sem pak dopíšeš další kluby
+            ...registrovaneZLocalStorage // <--- Tady se připojí týmy z registrace
         };
 
         const container = document.getElementById('tymy-container');
