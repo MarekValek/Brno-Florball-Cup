@@ -3,7 +3,7 @@
   "short_name": "BFC",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#121316",
+  "background_color": "#FFFFFF",
   "theme_color": "#E31B23",
   "icons": [
     {
