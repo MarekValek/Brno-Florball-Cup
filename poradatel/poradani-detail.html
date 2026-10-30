@@ -11,51 +11,51 @@
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col">
+<body class="bg-bfcDark text-gray-100 min-h-screen flex flex-col font-sans">
 
     <!-- Horní lišta administrace turnaje -->
     <header class="sticky top-0 z-50 bg-bfcDark/95 border-b border-bfcBorder px-6 h-20 flex items-center justify-between">
         <div class="flex items-center space-x-4">
-            <a href="poradani.html" class="p-2 rounded-xl bg-bfcCard border border-bfcBorder hover:border-bfcRed transition text-gray-300 hover:text-white">
+            <a href="poradani.html" class="p-2.5 rounded-xl bg-bfcCard border border-bfcBorder hover:border-bfcRed transition text-gray-300 hover:text-white">
                 <i data-lucide="chevron-left" class="w-5 h-5"></i>
             </a>
             <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-bfcRed bg-bfcRed/10 px-2.5 py-0.5 rounded-full">Pořádání turnaje</span>
-                <h1 id="turnaj-nazev" class="text-lg font-black text-white tracking-wider">Challenge Cup Mladší elévové</h1>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-bfcRed bg-bfcRed/10 px-2.5 py-0.5 rounded-full border border-bfcRed/30">Pořádání turnaje</span>
+                <h1 id="turnaj-nazev" class="text-base md:text-lg font-black text-white tracking-wider mt-0.5">Challenge Cup – Mladší elévové 3+1</h1>
             </div>
         </div>
 
         <div class="flex items-center space-x-3">
-            <button class="p-2.5 rounded-xl bg-bfcCard border border-bfcBorder text-gray-300 hover:text-white transition">
+            <button class="p-2.5 rounded-xl bg-bfcCard border border-bfcBorder text-gray-300 hover:border-bfcRed transition">
                 <i data-lucide="volume-2" class="w-5 h-5"></i>
             </button>
-            <button class="px-4 py-2 bg-bfcCard border border-bfcBorder hover:border-bfcRed rounded-xl text-xs font-bold text-white transition flex items-center space-x-2">
+            <button class="px-4 py-2.5 bg-bfcCard border border-bfcBorder hover:border-bfcRed rounded-xl text-xs font-bold text-white transition flex items-center space-x-2">
                 <i data-lucide="edit-3" class="w-4 h-4 text-bfcRed"></i>
-                <span>Editor turnaje</span>
+                <span class="hidden md:inline">Editor turnaje</span>
             </button>
         </div>
     </header>
 
-    <!-- Navigační záložky (Zápasy, Ovládání hřišť, Statistiky...) -->
-    <div class="bg-bfcCard border-b border-bfcBorder px-6 py-3">
+    <!-- Navigační záložky -->
+    <div class="bg-bfcCard/50 border-b border-bfcBorder px-6 py-3">
         <div class="max-w-7xl mx-auto flex space-x-2 overflow-x-auto text-xs font-bold">
-            <button onclick="switchTab('zapasu')" id="btn-tab-zapasu" class="px-4 py-2.5 rounded-xl bg-bfcRed text-white flex items-center space-x-2 transition">
+            <button onclick="switchTab('zapasu')" id="btn-tab-zapasu" class="px-4 py-2.5 rounded-xl bg-bfcRed text-white flex items-center space-x-2 transition flex-shrink-0">
                 <i data-lucide="swords" class="w-4 h-4"></i>
                 <span>Zápasy</span>
             </button>
-            <button onclick="switchTab('hristi')" id="btn-tab-hristi" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+            <button onclick="switchTab('hristi')" id="btn-tab-hristi" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcCard hover:text-white flex items-center space-x-2 transition flex-shrink-0">
                 <i data-lucide="play-circle" class="w-4 h-4"></i>
                 <span>Ovládání hřišť</span>
             </button>
-            <button onclick="switchTab('onlinel')" id="btn-tab-onlinel" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+            <button onclick="switchTab('onlinel')" id="btn-tab-onlinel" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcCard hover:text-white flex items-center space-x-2 transition flex-shrink-0">
                 <i data-lucide="settings" class="w-4 h-4"></i>
                 <span>Nastavení online</span>
             </button>
-            <button onclick="switchTab('pavouk')" id="btn-tab-pavouk" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+            <button onclick="switchTab('pavouk')" id="btn-tab-pavouk" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcCard hover:text-white flex items-center space-x-2 transition flex-shrink-0">
                 <i data-lucide="git-branch" class="w-4 h-4"></i>
                 <span>Tabulka a pavouk</span>
             </button>
-            <button onclick="switchTab('statistiky')" id="btn-tab-statistiky" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition">
+            <button onclick="switchTab('statistiky')" id="btn-tab-statistiky" class="px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcCard hover:text-white flex items-center space-x-2 transition flex-shrink-0">
                 <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
                 <span>Statistiky</span>
             </button>
@@ -69,13 +69,13 @@
         <div id="tab-content-zapasu" class="space-y-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center space-x-3 w-full md:w-auto">
-                    <h2 class="text-xl font-black uppercase tracking-wider">Seznam zápasů</h2>
+                    <h2 class="text-xl font-black uppercase tracking-wider text-white">Seznam zápasů</h2>
                     <span id="pocet-zapasu-badge" class="px-2.5 py-0.5 rounded-full bg-bfcCard border border-bfcBorder text-xs font-bold text-gray-400">0</span>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
-                    <input type="text" id="search-input" oninput="filterMatches()" placeholder="Hledat tým, skupinu, číslo..." class="px-4 py-2 bg-bfcCard border border-bfcBorder rounded-xl text-xs text-white focus:outline-none focus:border-bfcRed w-full md:w-64">
-                    <select id="hriste-select" onchange="filterMatches()" class="px-4 py-2 bg-bfcCard border border-bfcBorder rounded-xl text-xs text-white focus:outline-none focus:border-bfcRed">
+                    <input type="text" id="search-input" oninput="filterMatches()" placeholder="Hledat tým, skupinu, číslo..." class="px-4 py-2.5 bg-bfcCard border border-bfcBorder rounded-xl text-xs text-white focus:outline-none focus:border-bfcRed w-full md:w-64">
+                    <select id="hriste-select" onchange="filterMatches()" class="px-4 py-2.5 bg-bfcCard border border-bfcBorder rounded-xl text-xs text-white focus:outline-none focus:border-bfcRed">
                         <option value="vsechna">Všechna hřiště</option>
                         <option value="Hřiště 1">SH Moravany • Hřiště 1</option>
                         <option value="Hřiště 2">SH Moravany • Hřiště 2</option>
@@ -84,7 +84,7 @@
             </div>
 
             <!-- Filtrovací tlačítka stavů -->
-            <div class="flex space-x-2 text-xs font-bold">
+            <div class="flex flex-wrap gap-2 text-xs font-bold">
                 <button onclick="setFilter('vsechny')" id="filter-vsechny" class="px-4 py-2 rounded-xl bg-bfcRed text-white transition">Všechny</button>
                 <button onclick="setFilter('zive')" id="filter-zive" class="px-4 py-2 rounded-xl bg-bfcCard border border-bfcBorder text-gray-400 hover:text-white transition">Živě (0)</button>
                 <button onclick="setFilter('planovane')" id="filter-planovane" class="px-4 py-2 rounded-xl bg-bfcCard border border-bfcBorder text-gray-400 hover:text-white transition">Plánované</button>
@@ -97,11 +97,11 @@
             </div>
         </div>
 
-        <!-- Ostatní záložky (zatím placeholder) -->
-        <div id="tab-content-hristi" class="hidden text-center py-20 text-gray-500">Ovládání hřišť a časomíry se připravuje...</div>
-        <div id="tab-content-onlinel" class="hidden text-center py-20 text-gray-500">Nastavení online přenosů...</div>
-        <div id="tab-content-pavouk" class="hidden text-center py-20 text-gray-500">Turnajový pavouk a tabulky...</div>
-        <div id="tab-content-statistiky" class="hidden text-center py-20 text-gray-500">Statistiky střelců a týmů...</div>
+        <!-- Ostatní záložky -->
+        <div id="tab-content-hristi" class="hidden text-center py-20 text-gray-500 text-sm">Ovládání hřišť a časomíry se připravuje...</div>
+        <div id="tab-content-onlinel" class="hidden text-center py-20 text-gray-500 text-sm">Nastavení online přenosů...</div>
+        <div id="tab-content-pavouk" class="hidden text-center py-20 text-gray-500 text-sm">Turnajový pavouk a tabulky...</div>
+        <div id="tab-content-statistiky" class="hidden text-center py-20 text-gray-500 text-sm">Statistiky střelců a týmů...</div>
 
     </main>
 
@@ -146,7 +146,6 @@
     </div>
 
     <script>
-        // Výchozí zápasy pro turnaj (uložíme do localStorage, pokud tam ještě nejsou)
         const defaultMatches = [
             { id: 1, cislo: "#001", skupina: "Skupina A", cas: "09:00", t1: "TROOPERS Green", t2: "Bulldogs Brno Orange", skore1: 11, skore2: 1, hala: "SH Moravany • Hřiště 1", stav: "konec" },
             { id: 2, cislo: "#002", skupina: "Skupina A", cas: "09:00", t1: "Florbal Rosice", t2: "FBŠ HATTRICK BRNO 2", skore1: 7, skore2: 5, hala: "SH Moravany • Hřiště 2", stav: "konec" },
@@ -157,7 +156,6 @@
         let activeFilter = 'vsechny';
         let currentEditingId = null;
 
-        // Načtení zápasů z localStorage
         function getMatches() {
             let matches = JSON.parse(localStorage.getItem('bfc_turnaj_zapsy'));
             if (!matches) {
@@ -181,7 +179,7 @@
                 return matchSearch && matchHriste && matchStav;
             });
 
-            document.getElementById('pocet-zapasu-badge.').innerText = filtered.length;
+            document.getElementById('pocet-zapasu-badge').innerText = filtered.length;
 
             if (filtered.length === 0) {
                 grid.innerHTML = `<div class="col-span-3 text-center py-12 text-gray-500 text-xs">Žádné zápasy neodpovídají filtrům.</div>`;
@@ -190,35 +188,35 @@
 
             filtered.forEach(m => {
                 let statusBadge = m.stav === 'konec' 
-                    ? `<span class="px-2 py-0.5 bg-bfcDark border border-bfcBorder text-[10px] font-bold text-gray-400 rounded">KONEC</span>`
-                    : (m.stav === 'zive' ? `<span class="px-2 py-0.5 bg-bfcRed/20 text-bfcRed text-[10px] font-bold rounded animate-pulse">ŽIVĚ</span>` : `<span class="px-2 py-0.5 bg-bfcDark border border-bfcBorder text-[10px] font-bold text-gray-400 rounded">PLÁNOVÁNO</span>`);
+                    ? `<span class="px-2.5 py-1 bg-bfcDark border border-bfcBorder text-[10px] font-bold text-gray-400 rounded-lg">KONEC</span>`
+                    : (m.stav === 'zive' ? `<span class="px-2.5 py-1 bg-bfcRed/20 border border-bfcRed/30 text-bfcRed text-[10px] font-bold rounded-lg animate-pulse">ŽIVĚ</span>` : `<span class="px-2.5 py-1 bg-bfcDark border border-bfcBorder text-[10px] font-bold text-gray-400 rounded-lg">PLÁNOVÁNO</span>`);
 
                 grid.innerHTML += `
-                    <div class="bg-bfcCard border border-bfcBorder rounded-2xl p-5 shadow-xl flex flex-col justify-between hover:border-bfcRed/40 transition">
-                        <div class="space-y-3">
+                    <div class="bg-bfcCard border border-bfcBorder rounded-2xl p-6 shadow-xl flex flex-col justify-between hover:border-bfcRed/40 transition">
+                        <div class="space-y-4">
                             <div class="flex justify-between items-center text-xs">
                                 <span class="font-bold text-gray-400">${m.cas} &nbsp;&bull;&nbsp; <span class="text-white">${m.cislo}</span> &nbsp;&bull;&nbsp; ${m.skupina}</span>
                                 ${statusBadge}
                             </div>
 
-                            <div class="space-y-2 py-2 border-y border-bfcBorder/50">
+                            <div class="space-y-2.5 py-3 border-y border-bfcBorder">
                                 <div class="flex justify-between items-center">
-                                    <span class="text-xs font-semibold text-white truncate max-w-[180px]">${m.t1}</span>
-                                    <span class="text-base font-black text-white px-3 py-1 bg-bfcDark border border-bfcBorder rounded-lg">${m.skore1}</span>
+                                    <span class="text-xs font-bold text-white truncate max-w-[190px]">${m.t1}</span>
+                                    <span class="text-base font-black text-white px-3 py-1 bg-bfcDark border border-bfcBorder rounded-xl">${m.skore1}</span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-xs font-semibold text-white truncate max-w-[180px]">${m.t2}</span>
-                                    <span class="text-base font-black text-white px-3 py-1 bg-bfcDark border border-bfcBorder rounded-lg">${m.skore2}</span>
+                                    <span class="text-xs font-bold text-white truncate max-w-[190px]">${m.t2}</span>
+                                    <span class="text-base font-black text-white px-3 py-1 bg-bfcDark border border-bfcBorder rounded-xl">${m.skore2}</span>
                                 </div>
                             </div>
 
-                            <p class="text-[11px] text-gray-400">${m.hala}</p>
+                            <p class="text-[11px] text-gray-400 flex items-center space-x-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-bfcRed"></i><span>${m.hala}</span></p>
                         </div>
 
-                        <div class="mt-4 pt-3 border-t border-bfcBorder flex justify-between items-center">
-                            <button onclick="openModal(${m.id})" class="w-full py-2 bg-bfcDark hover:bg-bfcRed text-white font-bold rounded-xl transition text-xs border border-bfcBorder hover:border-bfcRed flex items-center justify-center space-x-1">
+                        <div class="mt-6 pt-4 border-t border-bfcBorder">
+                            <button onclick="openModal(${m.id})" class="w-full py-2.5 bg-bfcDark hover:bg-bfcRed text-white font-bold rounded-xl transition text-xs border border-bfcBorder hover:border-bfcRed flex items-center justify-center space-x-2">
                                 <span>Spravovat zápas</span>
-                                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                <i data-lucide="chevron-right" class="w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
@@ -283,10 +281,10 @@
         function switchTab(tab) {
             ['zapasu', 'hristi', 'onlinel', 'pavouk', 'statistiky'].forEach(t => {
                 document.getElementById(`tab-content-${t}`).classList.add('hidden');
-                document.getElementById(`btn-tab-${t}`).className = "px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcDark hover:text-white flex items-center space-x-2 transition";
+                document.getElementById(`btn-tab-${t}`).className = "px-4 py-2.5 rounded-xl text-gray-400 hover:bg-bfcCard hover:text-white flex items-center space-x-2 transition flex-shrink-0";
             });
             document.getElementById(`tab-content-${tab}`).classList.remove('hidden');
-            document.getElementById(`btn-tab-${tab}`).className = "px-4 py-2.5 rounded-xl bg-bfcRed text-white flex items-center space-x-2 transition";
+            document.getElementById(`btn-tab-${tab}`).className = "px-4 py-2.5 rounded-xl bg-bfcRed text-white flex items-center space-x-2 transition flex-shrink-0";
         }
 
         renderMatches();
