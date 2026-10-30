@@ -1,0 +1,20 @@
+{
+  "name": "Brno Florball Cup",
+  "short_name": "BFC",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#121316",
+  "theme_color": "#E31B23",
+  "icons": [
+    {
+      "src": "images/BFC/BFC-Logo2.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/BFC/BFC-Logo2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
