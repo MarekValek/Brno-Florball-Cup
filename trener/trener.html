@@ -120,7 +120,7 @@
             ];
 
             // Ověření při přihlášení
-            const trener = vsichniTreneri.find(t => t.email === email && t.password === password);
+            const trener = vsetciTreneri.find(t => t.email === email && t.password === password);
             if (trener) {
                 localStorage.setItem('aktivni_trener', JSON.stringify(trener));
                 window.location.href = "profil.html";
