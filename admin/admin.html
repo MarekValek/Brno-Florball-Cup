@@ -108,7 +108,7 @@
             const password = document.getElementById('login-password').value;
 
             // Vyhledání pořadatele v globální databázi
-            const admin = window.adminDatabase.find(p => p.email === email && p.password === password);
+            const BFCadmin = window.BFCadminDatabase.find(p => p.email === email && p.password === password);
 
             if (poradatel) {
                 // Úspěšné přesměrování na profil
