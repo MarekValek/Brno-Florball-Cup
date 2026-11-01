@@ -103,10 +103,20 @@
     <script>
         function handleLogin(event) {
             event.preventDefault();
-            // Po úspěšném přihlášení přesměrujeme uživatele na jeho profil
-            window.location.href = "vyplatnice.html";
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Vyhledání pořadatele v globální databázi
+            const admin = window.adminDatabase.find(p => p.email === email && p.password === password);
+
+            if (poradatel) {
+                // Úspěšné přesměrování na profil
+                window.location.href = "vyplatnice.html";
+            } else {
+                alert("Nesprávný e-mail nebo heslo!");
+            }
         }
-        lucide.createIcons();
     </script>
     
     <script>
