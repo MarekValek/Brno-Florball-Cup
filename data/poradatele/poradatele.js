@@ -3,7 +3,7 @@ window.poradateleDatabase = [
         email: "poradatel@bfc.cz",
         password: "heslo123",
         jmeno: "Marek Válek",
-        pozice: "Hlavní pořadatel",
+        pozice: "Online + časomíra",
         cisloUctu: "123456789/0300",
         velikostTricka: "L",
         foto: "images/BFCTym/valek.png", // Cesta k fotce pořadatele
@@ -18,5 +18,15 @@ window.poradateleDatabase = [
         velikostTricka: "M",
         foto: "images/BFCTym/novotna.png", // Cesta k fotce pořadatele
         popis: "Naše nejlepší zdravotnice 🚑"
-    }
+    },
+    {
+        email: "obr@bfc.cz",
+        password: "heslo123",
+        jmeno: "Jakub Obr",
+        pozice: "Hlavní pořadatel",
+        cisloUctu: "987654321/0100",
+        velikostTricka: "XL",
+        foto: "images/BFCTym/obr.png", // Cesta k fotce pořadatele
+        popis: "Hlavní pořadatel BFC 🏑"
+}
 ];
