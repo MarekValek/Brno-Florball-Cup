@@ -28,5 +28,15 @@ window.poradateleDatabase = [
         velikostTricka: "XL",
         foto: "images/BFCTym/obr.png", // Cesta k fotce pořadatele
         popis: "Hlavní pořadatel BFC 🏑"
+},
+{
+        email: "novotny@bfc.cz",
+        password: "heslo123",
+        jmeno: "Marek Novotný",
+        pozice: "Časomíra",
+        cisloUctu: "987654321/0100",
+        velikostTricka: "L",
+        foto: "images/BFCTym/novotny.png", // Cesta k fotce pořadatele
+        popis: "Časomíra ⏱️"
 }
 ];
