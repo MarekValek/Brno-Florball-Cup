@@ -3,7 +3,7 @@ window.poradateleDatabase = [
         email: "poradatel@bfc.cz",
         password: "heslo123",
         jmeno: "Marek Válek",
-        pozice: "Online + časomíra",
+        pozice: "Online",
         cisloUctu: "123456789/0300",
         velikostTricka: "L",
         foto: "images/BFCTym/valek.png", // Cesta k fotce pořadatele
