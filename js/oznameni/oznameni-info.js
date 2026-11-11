@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('oznameni-box');
     if (!container) return;
 
-    // Ukázka vylepšeného vzhledu banneru v JS souboru:
+    // Všechno pohromadě v jednom bloku pod sebou
     container.innerHTML = `
-        <div class="bg-[#181a1f]/90 border border-bfcBorder/80 backdrop-blur-xl rounded-2xl px-6 py-4 max-w-3xl mx-auto my-5 shadow-2xl flex items-center justify-between gap-4 text-left transition-all duration-300 hover:border-bfcRed/50">
-        
-            <!-- Levá část s pulzující tečkou a textem -->
+        <!-- Plovoucí banner s pulzující tečkou -->
+        <div class="bg-[#181a1f]/90 border border-bfcBorder/80 backdrop-blur-xl rounded-2xl px-6 py-4 max-w-3xl mx-auto my-5 shadow-2xl flex items-center justify-between gap-4 text-left transition-all duration-300 hover:border-blue-500/50">
+            
             <div class="flex items-center space-x-4">
                 <div class="relative flex h-3 w-3 flex-shrink-0">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -38,13 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
             </div>
 
-            <!-- Tlačítko Více -->
             <button onclick="openAlertModal()" class="px-4 py-2 bg-bfcDark hover:bg-blue-500 text-gray-200 hover:text-white font-bold text-xs rounded-xl border border-bfcBorder hover:border-blue-500 transition-all shadow flex-shrink-0">
                 Více info
             </button>
         </div>
-    `;
 
+        <!-- Modální okno s detailem -->
         <div id="bfc-alert-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
             <div class="bg-bfcCard border border-bfcBorder rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-6 shadow-2xl relative text-left">
                 <button onclick="closeAlertModal()" class="absolute top-6 right-6 p-2 rounded-xl bg-bfcDark border border-bfcBorder text-gray-400 hover:text-white transition">
@@ -64,8 +63,22 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         </div>
     `;
+
     if (typeof lucide !== 'undefined') lucide.createIcons();
 });
 
-function openAlertModal() { document.getElementById('bfc-alert-modal')?.classList.remove('hidden'), document.getElementById('bfc-alert-modal')?.classList.add('flex'); }
-function closeAlertModal() { document.getElementById('bfc-alert-modal')?.classList.add('hidden'); }
+function openAlertModal() { 
+    const modal = document.getElementById('bfc-alert-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function closeAlertModal() { 
+    const modal = document.getElementById('bfc-alert-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
