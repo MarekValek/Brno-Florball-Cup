@@ -20,19 +20,30 @@ document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('oznameni-box');
     if (!container) return;
 
+    // Ukázka vylepšeného vzhledu banneru v JS souboru:
     container.innerHTML = `
-        <div class="bg-[#121316]/75 border border-bfcBorder/80 backdrop-blur-md rounded-[2rem] p-5 max-w-xl mx-auto my-3 shadow-2xl flex items-start justify-between gap-4 text-left transition duration-300">
-            <div class="w-11 h-11 rounded-full text-blue-400 bg-blue-500/20 border border-blue-500/40 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md">
-                <i data-lucide="bell" class="w-5 h-5 stroke-[2.5]"></i>
+        <div class="bg-[#181a1f]/90 border border-bfcBorder/80 backdrop-blur-xl rounded-2xl px-6 py-4 max-w-3xl mx-auto my-5 shadow-2xl flex items-center justify-between gap-4 text-left transition-all duration-300 hover:border-bfcRed/50">
+        
+            <!-- Levá část s pulzující tečkou a textem -->
+            <div class="flex items-center space-x-4">
+                <div class="relative flex h-3 w-3 flex-shrink-0">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+                </div>
+            
+                <div class="text-xs sm:text-sm leading-snug">
+                    <span class="font-black uppercase tracking-wider text-blue-400 mr-2">${bfcAktualita.cas}</span>
+                    <span class="text-white font-medium">${bfcAktualita.titulek}</span>
+                    <span class="text-gray-400 ml-1 hidden md:inline">${bfcAktualita.text}</span>
+                </div>
             </div>
-            <div class="flex-1 space-y-1 text-sm leading-snug">
-                <p class="text-blue-400 font-bold">${bfcAktualita.cas} · <span class="text-gray-200 font-normal">${bfcAktualita.titulek}</span></p>
-                <p class="text-gray-400 text-xs font-normal">${bfcAktualita.text}</p>
-            </div>
-            <button onclick="openAlertModal()" class="px-5 py-2.5 bg-bfcDark/90 text-gray-200 font-semibold text-xs rounded-full border border-bfcBorder hover:bg-blue-500 hover:text-white hover:border-blue-500 transition flex-shrink-0 self-center shadow-lg">
-                Více
+
+            <!-- Tlačítko Více -->
+            <button onclick="openAlertModal()" class="px-4 py-2 bg-bfcDark hover:bg-blue-500 text-gray-200 hover:text-white font-bold text-xs rounded-xl border border-bfcBorder hover:border-blue-500 transition-all shadow flex-shrink-0">
+                Více info
             </button>
         </div>
+    `;
 
         <div id="bfc-alert-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
             <div class="bg-bfcCard border border-bfcBorder rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-6 shadow-2xl relative text-left">
