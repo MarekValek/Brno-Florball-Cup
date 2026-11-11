@@ -1,3 +1,0 @@
-Seznam oznámení:
-
-oznameni.js = 
