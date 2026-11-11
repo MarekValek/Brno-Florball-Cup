@@ -1,0 +1,3 @@
+Seznam oznámení:
+
+oznameni.js = 
